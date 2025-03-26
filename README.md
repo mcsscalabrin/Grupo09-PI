@@ -1,4 +1,4 @@
-# Grupo09-PI
+# Grupo09-PI-Vacinas
 <h1>Regras de Condução do Projeto</h1>
 
 1. Uma reunião semanal do grupo, na quinta-feira, às 21:00.
