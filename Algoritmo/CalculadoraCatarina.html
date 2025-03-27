@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <h2>Simulador Financeiro</h2>
+    Insira a quantidade de lotes de vacina transportadas: <input type="number" id="lotes"> <br>
+    Insira a média de vacinas por lote: <input type="number" id="media"> <br>
+    Insira o valor de uma unidade da vacina: <input type="number" id="valor"> <br>
+    Insira a quantidade de vacinas comprometidas: <input type="number" id="perdas"> <br>
+    <button onclick="calcular()">Calcular Perdas</button>
+    <div id="divvacinas"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        var ax_total = Number(lotes.value) * Number(media.value) // Quantidade de unidades transportadas
+        var ax_prejuizo = (Number(perdas.value) * 100) / Number(ax_total) // Porcentagem de vacinas perdidas
+        var ax_valor = Number(valor.value) *  Number(perdas.value) // Valor total das perdas
+        divvacinas.innerHTML = `Você transportou uma média de ${ax_total} vacinas, onde ${ax_prejuizo}% foram comprometidas. <br>
+        Você teve um gasto de R$${ax_valor}`
+        if(Number(perdas.value) > Number(ax_total)){
+            divvacinas.innerHTML = `<b style="color: red;"> Número de vacinas deterioradas ultrapassa a quantidade de vacinas transportadas, favor inserir dados verdadeiros</b>`
+        }
+    }
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensify: Calculadora Financeira</title>
+    <style>
+    body{
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <h2> Calculadora Simuladora Financeira</h2>
+    Insira a quantidade ao todo das vacinas transportadas: <input type="text" id="qtd_vacinas"><br><br>
+    Insira o valor da unidade das vacinas transportadas: <input type="text" id="valor_vacinas"><br><br>
+    Insira a quantidade de vacinas perdidas: <input type="text" id="qtd_deterionadas"><br><br>
+    <button onclick="calcular()">Simular o Valor</button>
+
+    <h4 id="text_resultado"></h4>
+</body>
+<script>
+
+function calcular() {
+    if ( qtd_vacinas.value > qtd_deterionadas.value) {
+        
+    var TotalVacina = Number(qtd_vacinas.value) * Number(valor_vacinas.value);
+    var PerdaPorcentagem = (qtd_deterionadas.value / qtd_vacinas.value) * 100;
+    var Prejuizo = qtd_deterionadas.value  * valor_vacinas.value;
+
+    text_resultado.innerHTML = `O valor total investido seria R$${TotalVacina}, mas ocorreu uma perda de ${PerdaPorcentagem}% de vacinas deterioradas tendo um prejuizo de R$${Prejuizo}`;
+    }
+    else {
+        text_resultado.innerHTML = `<h4 style="color:red">Algo de errado, confira os dados inseridos novamente</h4>`
+    }
+}
+
+</script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head> <h2>Calculadora das vacinas</h2>
+<body>
+   Insira a quantidade de caminhões utilizados no transporte das vacinas: <input id="ipt_qtdcaminhoes">
+<br>    
+   Insira a quantidade de vacinas transportadas por caminhão: <input id="ipt_qtdvacinas">
+<br>
+   Insira a quantidade de vacinas perdidas: <input id="ipt_perdas">
+<br>
+   Insira o nome das vacinas transportadas: <input id="ipt_nomevacinas">
+   <br>
+    Insira o valor das vacinas transportadas: <input id="ipt_valorvacinas">
+    <br>
+   <button onclick="calculo()">Calcular</button> 
+<br>
+<br>
+    <div id="div_txt">Quantidade de vacinas transportadas: <br>
+                    Quantida de vacinas perdidas no transporte = porcentagem: <br>
+                    Prejuízo no transporte em reais: <br>
+                    Valor perdido antes de utilizar os sensores: <br>
+                    Valor economizado após os sensores:
+                    
+    </div>
+
+
+
+</body>
+</html>
+<script>
+
+    function calculo() {
+        var ax_vacinas = Number(ipt_qtdvacinas.value) * Number(ipt_qtdcaminhoes.value)
+        var ax_perdas = (Number(ipt_perdas.value) / ax_vacinas) * 100
+        var ax_prejuizo = Number(ipt_perdas.value) * (ipt_valorvacinas.value)
+        var ax_economia= Number(ipt_qtdvacinas.value) * (ipt_valorvacinas.value)
+        
+        div_txt.innerHTML = `Quantidade de vacinas totais transportadas: <b> ${ax_vacinas} </b> <br>
+                          Quantida de vacinas perdidas no transporte em porcentagem: <b> ${ax_perdas}% </b> <br>
+                          Sua empresa teve uma perda de: <b> R$${ax_prejuizo} </b> <br> <br>
+                           Valor perdido antes de utilizar os sensores: R$${ax_prejuizo} <br>
+                           Valor economizado após os sensores:R$${ax_economia}`
+                          
+    }
+
+    </script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> <h2>Calculadora financeira</h2>
+<body>
+   Coloque a quantidade de vacinas transportadas <input id="ipt_qtdvacinas">
+<br>
+    Coloque o valor da vacina transportada <input id="inp_valor">
+<br>
+    Coloque quantas viagens você faz mensamelnte <input id="inp_viagens">
+<br>
+    Coloque a quantidade de vacinas perdidas devido a variação de temperatura<input id="ipt_perdas">
+<br>
+   <button onclick="calcular()">Calcular</button> 
+<br>
+<br>
+    <div id="i_txt">Quantidade dinheiro e vacinas perdidas no transporte em porcentagem: <br>
+                    Vacinas não deterioradas correspondem em reais: <br>
+                    O prejuízo no transporte em reais decorrente deteriorção de vacinas:  <br>
+                    Esse problema mensalmente pode gerar um prejuízo de em média: <br>
+                    Baseado nas entregas mensais, esse problema anualmente pode gerar um prejuízo de em média: <br>
+                    O valor total da entrega caso nenhuma vacina fosse perdida seria equivalente a: 
+               </div>
+
+
+<div id="o_txt">
+</div>
+
+
+</body>
+</html>
+<script>
+
+    function calcular() {
+        var ax_valor = Number(inp_valor.value)
+        var ax_vacinas = Number(ipt_qtdvacinas.value)
+        var ax_perdas = (Number(ipt_perdas.value) / ax_vacinas) * 100
+        var ax_prejuizo = Number(ipt_perdas.value) * ax_valor
+        var ax_valorchegaram = (ax_vacinas * ax_valor) - ax_prejuizo  
+        var ax_valordeveriam = ax_vacinas * ax_valor
+        var ax_prejuizoM = ax_prejuizo * Number(inp_viagens.value)
+        var ax_prejuizoA = ax_prejuizoM * 12
+
+        i_txt.innerHTML = `Quantidade dinheiro e vacinas perdidas no transporte em porcentagem: <b> ${ax_perdas}% </b> <br>
+                          Vacinas não deterioradas correspondem em reais: <b> R$${ax_valorchegaram} </b> <br>
+                          Prejuízo do transporte em reais decorrente da perda de vacinas: <b> R$${ax_prejuizo} </b> <br>
+                          Esse problema mensalmente pode gerar um prejuízo de em média: <b> R$${ax_prejuizoM} </b> <br>
+                          Baseado nas entregas mensais, esse problema anualmente pode gerar um prejuízo de em média: <b> R$${ax_prejuizoA} </b> <br>
+                          O valor total da entrega  caso nenhuma vacina fosse perdida seria equivalente a: <b> R$${ax_valordeveriam} </b>`
+        o_txt.innerHTML = ``
+           
+      if (Number(ipt_perdas.value) > ax_vacinas) {
+         o_txt.innerHTML = ` <b style="color: red;"> A quantidade das vacinas perdidas ultrapassa a quantidade de vacinas totais, por favor insira novamente! </b>` 
+         i_txt.innerHTML = ``
+
+      }
+    }
+
+
+
+
+
+
+
+</script>

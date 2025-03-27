@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <h1>Olá! Seja bem vindo (a) a calculadora Financeira!</h1>
+    Insira a quantidade de vacinas armazenadas por viagem: <input type="text" id="vacinas"> <br>
+    Custo por unidade de vacina: <input type="text" id="custo"> <br>
+    Vacinas descartadas por viagem: <input type="text" id="perda"> <br>
+    Quantas viagens são feitas no mês: <input type="text" id="viagens"> <br>
+    <button onclick="calcular()">Calcular custos</button>
+    <div id="div_txt"></div>
+</body>
+</html>
+<script>
+    function calcular() {
+        var vac = Number(vacinas.value)
+        var cust = Number(custo.value)
+        var perd = Number(perda.value)
+        var transporte = 0;
+        var valores = 0;
+        var anual = 0;
+        transporte = vac * cust
+        valores = transporte * Number(viagens.value)
+        perd = perd * cust
+        anual = valores * 12
+
+        div_txt.innerHTML = `A empresa possui um gasto de: R$${transporte} por viagem, e: R$${valores} no mês. Deste valor gasto R$${perd} é perdido por conta da falta de monitoramento, que reflete num impacto de valor anual aproximadamente de: R$${anual}`
+
+    }
+</script>

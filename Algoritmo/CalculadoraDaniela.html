@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+<body>
+    <h2>Simulador Finaceiro</h2>
+    Insira a quantidade de vacinas que serão transportadas: <input id="ipt_vacinas"><br>
+    Insira a quantidade de vacinas deterioradas: <input id="ipt_deterioradas"><br>
+    Insira o valor unitário das vacinas: <input id="ipt_valoruni"><br><br>
+    <button onclick="simular()">Simular Prejuízo</button>
+    <p id="txt"></p>
+</body>
+</html>
+<script>
+    function simular() {
+        var valorTotal = ipt_vacinas.value * ipt_valoruni.value;
+        var perda = (ipt_vacinas.value - ipt_deterioradas.value) 
+        var porcentagem = (perda * ipt_valoruni.value) / 100
+        txt.innerHTML = `Com ${ipt_vacinas.value} vacinas transportadas num valor de R$${valorTotal} reais investidos.<br>
+         A porcentagem do seu prejuízo é de aproximadamente ${porcentagem}%. Sendo que ${ipt_deterioradas.value} vacinas foram deterioradas,`
+    }
+</script>

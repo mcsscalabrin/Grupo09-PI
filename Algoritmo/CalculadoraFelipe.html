@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Sprint 1</title>
+    </div>
+</head>
+<body>
+    <h1> <p>Calculadora Financeira</p></h1>
+
+    <h3><p>Preencha os campos abaixo:</p></h3>
+     <b>Informe a quantidade de vacinas transportadas: <input id="ipt_QTDvac">
+        <br></b>
+     <b>Informe a quantidade de vacinas perdidas: <input id="ipt_perda"></b>
+    <br>    
+   <b>Informe a quantidade média de transportes feita em 1 mês: <input id="ipt_mediaMes"></b> 
+    <br>
+    <b>Informe o preço unitário de cada vacina: <input id="ipt_preco"> <br></b>
+    <button onclick="calcular()">Calcular</button>
+    <div id="d_txt">Quantidade de vacinas transportadas:</div>
+    <div id="p_txt">Quantidade de vacinas perdidas durante todo transporte:</div>
+    <div id="m_txt">Valor total do prejuízo:</div>
+    <div id="div_txt"></div>
+</body>
+</html>
+<script>
+    function calcular() {
+       ax_prejuizo = Number(ipt_preco.value) * Number(ipt_perda.value)
+       mediaMes = Number(ipt_mediaMes.value) * ax_prejuizo
+       total = Number(ipt_QTDvac.value) * Number(ipt_preco.value)
+
+
+
+       if (ipt_perda.value > ipt_QTDvac.value) {
+    alert("a quantidade de vacinas perdidas, é maior que a quantidade de vacinas transportas, revise as informaçoes inseridas")
+    div_txt.innerHTML = ` `
+    
+}
+ else{
+        d_txt.innerHTML = `Quantidade de vacinas transportadas: ${ipt_QTDvac.value}`
+        p_txt.innerHTML = `Quantidade de vacinas perdidas durante todo transporte: ${ipt_perda.value}`
+        m_txt.innerHTML = `Valor total do prejuízo: ${ax_prejuizo}R$`
+        div_txt.innerHTML = `Esse problema mensal pode chegar a um prejuízo de ${mediaMes}R$`
+        div_txt.innerHTML = `O valor total desse transporte se nao ocorresse prejuízo seria de ${total}R$`
+
+ }
+
+
+
+    }
+
+
+</script>
+
+<div style="color: brown;">Obs: O valor total do prejuízo é calculado com base nas informações inseridas acima sobre sua perda e valor médio do seu valor unitário</div>
