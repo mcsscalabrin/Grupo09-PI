@@ -19,9 +19,9 @@
 
 <h6>Membros do Grupo</h6>
 <ol>
-  Gabriel Pereira, 
-  Lorenzo Rodrigues, 
-  Matheus Scalabrin, 
-  Nathan Barbosa, 
+  Gabriel Pereira;
+  Lorenzo Rodrigues;
+  Matheus Scalabrin;
+  Nathan Barbosa;
   Wendel Sousa
 </ol>
