@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+ <html lang="pt-br">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Simulador-financeiro</title>
+    
+ </head>
+ <body>
+     <h1>Simulador De Vacinas</h1>
+     <h4>Insira os dados abaixo</h4>
+    <b>Qual será a vacina:</b> <input id="nome_vacina" type="text"><br> <br>
+   <b>Quantas vacinas você vai transporta:</b><input id="qnt_vacinas"> <br> <br>
+    <b>Qual o valor médio da vacina:</b> <input id="valor_vacina"><br> <br>
+   <b> Quantas viagens será necessária: </b><input id="num_viagens"><br> <br>
+    <b>Quantidade média de vacinas que são deterioradas:</b> <input id="qnt_vac_dete" ><br> <br>
+    <button onclick="calcular()">Calcular</button>
+    <b id="txt"></b>
+     
+ </body>
+ 
+ 
+ <script>
+     var quantidade = 0;
+     var quantDete = 0;
+     var valor = 0;
+     var viagens = 0;
+     function calcular() {
+         quantidade = Number(qnt_vacinas.value);
+         valor = Number(valor_vacina.value);
+         viagens = Number(num_viagens.value);
+         quantDete = Number(qnt_vac_dete.value);
+        var total = quantidade * valor;
+        var total_perda = quantDete * valor;
+        var porcem = (quantDete/ quantidade) * 100;
+         txt.innerHTML = `<br> A Vacina ${nome_vacina.value}<br> custa R$${valor} Reais<br>
+          Com a quantidade total de ${quantidade} vacinas.<br> O valor total é
+          R$${total} reais <br> Sendo ${viagens} viagens necessarias.
+          <br> A quantidade de vacinas deterioradas é ${quantDete} <br>
+           O total de perda da sua simulação será R$${total_perda} reais
+           <br> Em pocentagem sua perda é de: ${porcem}% do total.`;
+         
+     }
+ 
+ 
+ </script>
+ </html>

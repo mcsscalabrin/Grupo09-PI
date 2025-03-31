@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora financeira Projeto PI</title>
+</head>
+<body style="background-color:teal; font-family: Arial, Helvetica, sans-serif;">
+    <div id="inicio">
+    <h2 style="text-align: center;">Olá, Seja bem-vindo(a) á nossa Calculadora Financeira!</h2>
+    <h4 style="text-align: center;">Otimize suas perdas e controle suas finanças de maneira autônoma</h4>
+    </div>
+    <br><br>
+    <div style="text-align: center;" id="dados">
+        <h3>Insira os seguintes dados para a análise dos resultados:</h3><br>
+        <h3>Nome: <input style="border-radius: 7px;" id="nome_cliente">
+            Vacinas Transportadas: <input style="border-radius: 7px;" id="vacinas_transp"><br>
+            <h3> Valor Vacina R$: <input style="border-radius: 7px;" id="valor_vacina">
+                Viagens/Mês: <input style="border-radius: 7px;" id="viagens_mes"> <br><br>
+                Vacinas perdidas pela variação de temp°: <input style="border-radius: 7px;" id="vacinas_perdidas"></h3><br>
+                <button style="border-radius: 5px; width: 100px;"onclick="calcular()">Analisar!</button>
+                <div id="div_mensagem"></div>
+            </div>
+</body>
+</html>
+<script>
+    function calcular() {
+        var cliente = nome_cliente.value
+        var vacinasTransp = Number(vacinas_transp.value)
+        var valorVacina = Number(valor_vacina.value)
+        var viagensMes = Number(viagens_mes.value)
+        var vacinasPerdidas = Number(vacinas_perdidas.value)
+
+        div_mensagem.innerHTML = `<br> Caro cliente ${cliente}<br>dado que sua vacina custa R$${valorVacina} cada unidade<br>
+          e a quantidade de vacinas transportadas é ${vacinasTransp}.<br>
+           O valor total é R$${vacinasTransp * valorVacina}<br> Sendo necessárias um total de ${viagensMes} por mês.
+          <br> A quantidade de vacinas deterioradas é ${vacinasPerdidas}<br>
+           A porcentagem de perda da sua simulação será ${(vacinasPerdidas/vacinasTransp) * 100}%
+           <br> O que totaliza, em reais ${(vacinasPerdidas/valorVacina)*100}R$`
+        
+        
+    }
+</script>
