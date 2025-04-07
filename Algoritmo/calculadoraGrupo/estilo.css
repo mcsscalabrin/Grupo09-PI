@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    background-color: teal;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.inicio {
+    text-align: center;
+}
+
+.dados {
+    text-align: center;
+}
+
+.botao {
+    width: 100%;
+}
+
+.mensagem {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
