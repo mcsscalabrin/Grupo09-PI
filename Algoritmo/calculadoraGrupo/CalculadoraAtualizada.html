@@ -9,44 +9,53 @@
 </head>
 
 <body>
+    <header>
+        <h1>SensiVacc Corporation</h1>
+    </header>
+
     <div class="inicio">
-        <h2>Olá, Seja bem-vindo(a) á nossa Calculadora Financeira!</h2>
-        <h4>Otimize suas perdas e controle suas finanças de maneira autônoma</h4>
+        <h1>Olá, Seja bem-vindo(a) à nossa Calculadora Financeira!</h2>
+        <h3>Otimize suas perdas e controle suas finanças de maneira autônoma</h4>
     </div>
-    <br>
+
     <div class="dados">
-        <h2>Insira os seguintes dados para a análise dos resultados:</h2>
-        <br>
-        <h3>Nome: <input id="nome_cliente">
-            Vacinas Transportadas: <input id="vacinas_transp">
-            <br>
-            <h3>
-                Valor Vacina R$: <input id="valor_vacina">
-                Viagens/Mês: <input id="viagens_mes">
-                <br>
-                <br>
-                Vacinas perdidas pela variação de temp°: <input id="vacinas_perdidas">
-            </h3>
-            <br>
-            <div class="botao">
-                <button onclick="calcular()">Analisar!</button>
-            </div>
-            <div class="mensagem" id="div_mensagem"></div>
+        <h2>Insira os seguintes dados para análise</h2>
+        <h3>
+            Nome da Empresa: <input id="nome_cliente"><br>
+            Vacinas Transportadas: <input id="vacinas_transp"><br>
+            Valor Vacina R$: <input id="valor_vacina"><br>
+            Viagens/Mês: <input id="viagens_mes"><br>
+            Vacinas perdidas pela variação de temp°: <input id="vacinas_perdidas">
+        </h3>
+
+        <div class="botao">
+            <button onclick="calcular()">Analisar!</button>
+        </div>
+        <div class="mensagem" id="div_mensagem"></div>
     </div>
-    </div>
+
+    <script>
+        function calcular() {
+            var cliente = nome_cliente.value;
+            var vacinasTransp = Number(vacinas_transp.value);
+            var valorVacina = Number(valor_vacina.value);
+            var viagensMes = Number(viagens_mes.value);
+            var vacinasPerdidas = Number(vacinas_perdidas.value);
+
+            var percentualPerda = ((vacinasPerdidas / vacinasTransp) * 100).toFixed(2);
+            var prejuizo = (vacinasPerdidas * valorVacina).toFixed(2);
+            
+            if (cliente == '' || vacinasTransp == '' || valorVacina == '' || viagensMes == '' || vacinasPerdidas == '') {
+                div_mensagem.innerHTML = ``
+                alert('Você precisa inserir dados nos campos')
+            } else{
+            div_mensagem.innerHTML = `<br><strong>Caro cliente ${cliente}.<br><br>
+            A porcentagem de perda da sua simulação será ${percentualPerda}%<br>
+            O que totaliza, em reais, R$ ${prejuizo}<br><br>
+            Contudo, a quantia em R$ perdida por amo seria de aproximadamente R$${prejuizo * 12}</strong>`;
+        }
+    }
+    </script>
 </body>
 
 </html>
-<script>
-    function calcular() {
-        var cliente = nome_cliente.value;
-        var vacinasTransp = Number(vacinas_transp.value);
-        var valorVacina = Number(valor_vacina.value);
-        var viagensMes = Number(viagens_mes.value);
-        var vacinasPerdidas = Number(vacinas_perdidas.value);
-
-        div_mensagem.innerHTML = `<br> Caro cliente ${cliente}.<br>
-        A porcentagem de perda da sua simulação será ${(vacinasPerdidas / vacinasTransp) * 100}%
-        <br> O que totaliza, em reais ${(vacinasPerdidas / valorVacina) * 100}R$`;
-    }
-</script>
