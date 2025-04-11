@@ -119,7 +119,7 @@ join registro as d
 	on idSensor = sensor
 join transporte as t
 	on t.idTransporte = s.localizacao
-    where idEmpresa =3;
+    where idEmpresa = 1;
     
 
 
