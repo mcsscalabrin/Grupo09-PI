@@ -16,12 +16,14 @@ complemento varchar(20)
 
 -- ------------------------------------------------------------------
 create table usuario( 
-idUsuario INT PRIMARY KEY auto_increment,
+idUsuario int auto_increment,
+empresa int,
+constraint pkComposta
+	primary key (idUsuario, empresa),
 nomeUsuario varchar(45) NOT NULL,
 cargo varchar(45) NOT NULL,
 email varchar(45) NOT NULL,
 senha varchar(45) NOT NULL,
-empresa int NOT NULL,
 constraint fkUsuarioEmpresa
 	foreign key (empresa) references cadastroEmpresa(idEmpresa)
 );
@@ -45,7 +47,7 @@ statusSensor varchar (10) NOT NULL,
 empresa int NOT NULL,
 localizacao int NOT NULL,
 constraint fkSensorTransporte
-	foreign key (localizacao) references Transporte(idTransporte),
+	foreign key (localizacao) references transporte(idTransporte),
 constraint chkstatusSensor 
 	check(statusSensor in ('Ativo', 'Inativo')),
 constraint fkSensorEmpresa 
@@ -54,12 +56,14 @@ constraint fkSensorEmpresa
 
 -- ------------------------------------------------------------------
 create table registro(
-idRegistro INT PRIMARY KEY auto_increment,
+idRegistro int auto_increment,
+sensor int,
+constraint pkComposta 
+	primary key (idRegistro, sensor),
 temperatura float,
 dtHoraMedicao datetime default current_timestamp,
-sensor int NOT NULL,
 constraint fkRegistroSensor 
-	foreign key (sensor) references Sensor(idSensor)
+	foreign key (sensor) references sensor(idSensor)
 );
 
 insert into cadastroEmpresa  values
@@ -70,12 +74,12 @@ insert into cadastroEmpresa  values
 (default, 'StartUpX', 'admin@startupx.com', 'startx2024', '51999998888', '11223344000122', '90020340', '300', 'Sala 22');
 
 insert into usuario values
-(default, 'Carlos Silva', 'gerente', 'carlos@techvac.com', 'pass321', 1),
-(default, 'Marcos Almeida', 'analista', 'marcos@techvac.com', 'marco123', 1),
-(default, 'Mariana Souza', 'técnico de temperatura', 'mariana@inovafarma.com', 'inova457', 2),
-(default, 'Roberto Lima', 'farmacêutico', 'roberto@ecomed.com', 'eco780', 3),
-(default, 'Fernanda Costa', 'pesquisador', 'fernanda@megacorp.com', 'mega102', 4),
-(default, 'Lucas Almeida', 'analista', 'lucas@startupx.com', 'start2025', 5);
+(default, 1, 'Carlos Silva', 'gerente', 'carlos@techvac.com', 'pass321'),
+(default, 1, 'Marcos Almeida', 'analista', 'marcos@techvac.com', 'marco123'),
+(default, 2, 'Mariana Souza', 'técnico de temperatura', 'mariana@inovafarma.com', 'inova457'),
+(default, 3,'Roberto Lima', 'farmacêutico', 'roberto@ecomed.com', 'eco780'),
+(default, 4, 'Fernanda Costa','pesquisador', 'fernanda@megacorp.com', 'mega102'),
+(default, 5, 'Lucas Almeida', 'analista', 'lucas@startupx.com', 'start2025');
 
 insert into transporte values 
 (default, 'caminhão1', 'QJT2032', 1),
@@ -94,22 +98,22 @@ insert into sensor values
 (default, 'Sensor 2A1', 'LM35', 'Inativo', 5, 5);
 
 insert into registro values
-(default, 3.5, default, 1),
-(default, 8.0, default, 2),
-(default, 0.2, default, 3),
-(default, 0.0, default, 3),
-(default, 10, default, 3),
-(default, 6, default, 5);
+(default, 1, 3.5, default),
+(default, 2, 8.0, default),
+(default, 3, 0.2, default),
+(default, 3, 0.0, default),
+(default, 3, 10, default),
+(default, 5, 6, default);
 
 select nomeEmpresa, email, telefone from cadastroEmpresa where idEmpresa in (1, 2);
 
-select e.nomeEmpresa as Empresa, u.nomeUsuario as Colaborador, u.cargo Cargo, e.cep as CEP, e.numero as Número, ifnull(e.complemento, 'Não consta') as Complemento 
+select e.nomeEmpresa as Empresa, u.nomeUsuario as Colaborador, u.cargo Cargo, concat('CEP: ', e.cep, ' N', e.numero, ' ', ifnull(e.complemento, '') ) as Endereço
 from cadastroEmpresa as e join usuario as u
 	on e.idEmpresa = u.empresa;
     
 select e.nomeEmpresa as Empresa, s.nomeSensor as Sensor, s.tipo as Tipo, s.statusSensor as Status, t.nome as 'Localização do Sensor',
 case
-	when d.temperatura <= -1 or d.temperatura >= 7.35 then 'Temperatura Alta'
+	when d.temperatura <= -1 or d.temperatura > 8 then 'Alerta'
     else concat(temperatura, '°C')
     end as Temperatura,
 d.dtHoraMedicao as 'Horário da Medição'
@@ -119,8 +123,25 @@ join registro as d
 	on idSensor = sensor
 join transporte as t
 	on t.idTransporte = s.localizacao
-    where idEmpresa =3;
+    where idEmpresa =1;
     
+-- Select principal
+select s.nomeSensor as Sensor, 
+case 
+	when r.temperatura > 8 then 'Alerta'
+	else
+    concat(r.temperatura, '°C')
+    end as Temperatura
+from sensor as s join registro as r
+	on s.idSensor = r.sensor
+    where s.idSensor = 1;
+    
+    
+
+    
+
+    
+
 
 
 
