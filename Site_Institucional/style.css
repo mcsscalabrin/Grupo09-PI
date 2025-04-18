@@ -14,10 +14,16 @@ body {
     min-height: 100vh;
     justify-content: space-between;
     align-items: center;
+    background-image: url('imagens/bg-doutor-elementos-login.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+    position: relative;
 }
 
 .titulo {
     position: absolute;
+<<<<<<< HEAD
     margin-left: 20%;
     color: #0075cd;
     max-width: 500px;
@@ -28,6 +34,13 @@ body {
     margin-left: 10%;
     color: #0075cd;
     max-width: 500px;
+=======
+/*    color: #0075cd;*/
+    max-width: 800px;
+    margin-bottom: 400px;
+    margin-top: 25px;
+    margin-left: 30px;
+>>>>>>> 99eac2b886154373254e582980321714b18c7dc8
 }
 
 .titulo h2 {
@@ -117,6 +130,7 @@ body {
     color: #0075cd;
 }
 
+<<<<<<< HEAD
 .recuperar-senha {
     width: 100%;
     text-align: left;
@@ -143,6 +157,8 @@ body {
     margin-bottom: 20px;
 }
 
+=======
+>>>>>>> 99eac2b886154373254e582980321714b18c7dc8
 .btn-acessar {
     width: 100%;
     background-color: #ffffff;
