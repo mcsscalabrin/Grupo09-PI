@@ -14,14 +14,20 @@ body {
     min-height: 100vh;
     justify-content: space-between;
     align-items: center;
+    background-image: url('imagens/bg-doutor-elementos-login.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+    position: relative;
 }
 
 .titulo {
     position: absolute;
-    top: 30px;
-    left: 30px;
-    color: #0075cd;
-    max-width: 500px;
+/*    color: #0075cd;*/
+    max-width: 800px;
+    margin-bottom: 400px;
+    margin-top: 25px;
+    margin-left: 30px;
 }
 
 .titulo h2 {
@@ -33,7 +39,7 @@ body {
 .card {
     background-color: #0075cd;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     justify-content: flex-end;
     width: 450px;
     padding: 50px;
@@ -77,19 +83,6 @@ body {
 
 .input::placeholder {
     color: #0075cd;
-}
-
-.recuperar-senha {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.recuperar-senha a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
 }
 
 .btn-acessar {

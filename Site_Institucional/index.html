@@ -13,16 +13,12 @@
             <h2>
                 Faça login
                 <br>
-                E entre para o nosso time Sensi Vacc.
+                E entre para o nosso time <a style="color: #0075cd;">SensiVacc.</a>
             </h2>
         </div>
         <div class="card">
             <div class="card-content">
                 <h2 class="login">LOGIN</h2>
-                <div class="input-group">
-                    <label for="ipt_nome">Nome <span style="color: red;">*</span></label>
-                    <input class="input" id="ipt_nome" placeholder="Nome">
-                </div>
                 <div class="input-group">
                     <label for="ipt_email">Email <span style="color: red;">*</span></label>
                     <input class="input" id="ipt_email" placeholder="Email">
@@ -31,16 +27,36 @@
                     <label for="ipt_senha">Senha <span style="color: red;">*</span></label>
                     <input class="input" id="ipt_senha" type="password" placeholder="Senha">
                 </div>
-                <div class="recuperar-senha">
-                    <a href="#">Recuperar senha?</a>
+                <div class="cadastro">
+                    <a href="javascript:recuperarSenha()" class="btn-cadastrar">Recuperar Senha</a>
                 </div>
+                <br>
                 <button class="btn-acessar">Acessar</button>
                 <div class="cadastro">
                     <span>Novo na SensiVacc?</span>
-                    <a href="#" class="btn-cadastrar">Cadastrar</a>
+                    <a href="cadastro.html" class="btn-cadastrar">Cadastrar</a>
                 </div>
             </div>
         </div>
     </body>
 
 </html>
+<script>
+    function recuperarSenha() {
+        // validação do email
+        var axEmail = ipt_email.value;
+        var ehValido = true;
+
+        if (axEmail == "" || axEmail == null) {
+            alert("Por favor, preencha o campo de email antes de continuar.");
+            ehValido = false;
+        } else if (axEmail.indexOf('@') == -1 || axEmail.indexOf('.') == -1 || axEmail.indexOf('@') > axEmail.lastIndexOf('.') || axEmail.indexOf('@') == 0 || axEmail.lastIndexOf('.') == axEmail.length - 1) {
+            alert("Este endereço de email não é válido.");
+            ehValido = false;
+        }
+        // se o email for válido
+        if (ehValido) {
+            alert(`Foi enviado um código para redefinir sua senha no email ${axEmail}`);
+        }
+    }
+</script>
