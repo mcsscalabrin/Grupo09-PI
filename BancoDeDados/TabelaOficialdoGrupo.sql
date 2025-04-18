@@ -131,10 +131,12 @@ case
 	when r.temperatura > 8 then 'Alerta'
 	else
     concat(r.temperatura, '°C')
-    end as Temperatura
+    end as Temperatura, r.dtHoraMedicao as Horário
 from sensor as s join registro as r
 	on s.idSensor = r.sensor
     where s.idSensor = 1;
+    
+    
     
     
 
