@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="EstiloDashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <span id="barra_superior">
+    <p id="titulo_pagina">SensiVacc</p>
+    <p>Dashboard Dados Transporte de Vacinas</p>
+  </span>
+  <div id="dashboard">
+    <span class="card">
+      <h1>1</h1> <br>
+      <p>Alerta de Temperatura Essa Semana</p>
+    </span>
+    <span class="card">
+      <h1>12:00</h1> <br>
+      <p>Horário Com as Temperaturas Mais Altas</p>
+    </span>
+    <span class="card">
+      <h1>5</h1> <br>
+      <p>Alertas de Temperatura Nesse Semestre</p>
+    </span>
+    <span class="card">
+      <h1>Janeiro</h1> <br>
+      <p>Mês Com a Maior Quantidade de Alertas</p>
+    </span>
+    <span class="grafico"> <canvas id="Linha"></canvas> </span>
+    <span class="grafico"> <canvas id="Barras"></canvas> </span>
+
+  </div>
+
+</body>
+
+<script>
+  const js_linha = document.getElementById('Linha');
+  const js_barras = document.getElementById('Barras');
+
+  new Chart(js_linha, {
+    type: 'line',
+    data: {
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+      datasets: [
+        {
+          label: 'Caminhão1',
+          data: [8.1, 7.3, 5.3, 5, 4.5, 4],
+        },
+        {
+          label: 'Caminhão2',
+          data: [7, 6.1, 6.1, 6.8, 6.4, 5.7],
+        },
+        {
+          label: 'Caminhão3',
+          data: [7.3, 5.2, 3.5, 3.7, 4.1, 4.7],
+        }]
+    },
+    options: {
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Horário'
+          },
+        },
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Temperatura °C'
+          },
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Temperatura do Refrigerador nas Últimas Horas'
+        }
+      }
+    },
+
+  });
+
+  new Chart(js_barras, {
+    type: 'bar',
+    data: {
+      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+      datasets: [
+        {
+          label: 'Temperatura Média',
+          data: [7.5, 7.1, 5, 4, 3, 3],
+          borderWidth: 1
+        }]
+    },
+    options: {
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Meses'
+          },
+        },
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Temperatura °C'
+          },
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Temperatura Média dos Veículos no Primeiro Semestre de 2025'
+        }
+      }
+    }
+  });
+</script>
+
+</html>
