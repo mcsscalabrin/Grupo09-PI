@@ -11,9 +11,9 @@
     <body>
         <div class="titulo">
             <h2>
-                Cadastre-se
+                Cadastre-se, <span id="nome_digitado" style="color: #0075cd;"></span>
                 <br>
-                E entre para o nosso time  <span style="color:  #0075cd;">SensiVacc.</span> 
+                E entre para o nosso time <span style="color: #0075cd;">SensiVacc.</span>
             </h2>
         </div>
 
@@ -24,7 +24,7 @@
                 <div class="input-container">
                     <div class="input-group">
                         <label for="ipt_nome">Nome <span style="color: red;">*</span></label>
-                        <input class="input" id="ipt_nome" placeholder="Ex: Marcos">
+                        <input class="input" id="ipt_nome" placeholder="Ex: Marcos" oninput="atualizarTitulo()">
                     </div>
                     <div class="input-group">
                         <label for="ipt_cep">CEP <span style="color: red;">*</span></label>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
 
-                <button  href="inicio.html" class="btn-acessar-cadastro">Acessar</button>
+                <button onclick="validarCadastro()" class="btn-acessar-cadastro">Cadastrar</button>
 
                 <div class="login">
                     <span>Já é cliente?</span>
@@ -70,3 +70,32 @@
     </body>
 
 </html>
+
+<script>
+    function atualizarTitulo() {
+        nome_digitado.innerHTML = ipt_nome.value;
+    }
+
+    function validarCadastro() {
+        var nome = ipt_nome.value;
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
+        var cnpj = ipt_cnpj.value;
+        var validado = true;
+
+        if (nome == "" || email == "" || senha == "" || cnpj == "") {
+            alert("Por favor, preencha todos os campos obrigatórios.");
+            validado = false;
+        } else if (email.indexOf('@') == -1 || email.indexOf('.') == -1) {
+            alert("Por favor, insira um endereço de e-mail válido.");
+            validado = false;
+        } else if (senha.length < 6) {
+            alert("A senha deve ter pelo menos 6 caracteres.");
+            validado = false;
+        }
+        if (validado) {
+            alert("Cadastro realizado com sucesso!");
+            window.location.href = "inicio.html";
+        }
+    }
+</script>

@@ -33,7 +33,7 @@
                     <a href="javascript:recuperarSenha()" class="btn-cadastrar">Recuperar Senha</a>
                 </div>
                 <br>
-                <button href="inicio.html" class="btn-acessar">Acessar</button>
+                <button onclick="validarLogin()" class="btn-acessar">Acessar</button>
                 <div class="cadastro">
                     <span>Novo na SensiVacc?</span>
                     <a href="cadastro.html" class="btn-cadastrar">Cadastrar</a>
@@ -45,20 +45,37 @@
 </html>
 <script>
     function recuperarSenha() {
-        // validação do email
         var axEmail = ipt_email.value;
-        var ehValido = true;
+        var validado = true;
 
         if (axEmail == "" || axEmail == null) {
             alert("Por favor, preencha o campo de email antes de continuar.");
-            ehValido = false;
+            validado = false;
         } else if (axEmail.indexOf('@') == -1 || axEmail.indexOf('.') == -1 || axEmail.indexOf('@') > axEmail.lastIndexOf('.') || axEmail.indexOf('@') == 0 || axEmail.lastIndexOf('.') == axEmail.length - 1) {
             alert("Este endereço de email não é válido.");
-            ehValido = false;
+            validado = false;
         }
-        // se o email for válido
-        if (ehValido) {
+        if (validado) {
             alert(`Foi enviado um código para redefinir sua senha no email ${axEmail}`);
+        }
+    }
+
+    function validarLogin() {
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
+
+        if (email == "" || senha == "") {
+            alert("Por favor, preencha todos os campos obrigatórios.");
+            return;
+        }
+
+        // email: carlos@techvac.com
+        // senha: pass321
+        if (email === "carlos@techvac.com" && senha === "pass321") {
+            alert("Login realizado com sucesso! Bem-vindo à SensiVacc.");
+            window.location.href = "inicio.html";
+        } else {
+            alert("Email ou senha incorretos. Por favor, tente novamente.");
         }
     }
 </script>
