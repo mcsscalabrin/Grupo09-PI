@@ -1,4 +1,4 @@
-const int PINO_SENSOR_TEMPERATURA = A0; // Variável constante com valor inteiro, e está atribuindo o valor da porta analogica A2 a variável
+const int PINO_SENSOR_TEMPERATURA = A0; // Variável constante com valor inteiro, e está atribuindo o valor da porta analogica A0 a variável
 float temperaturaCelsius; // Exibir a temperatura em valores decimais
 
 void setup() { // void é uma função que não retorna,

@@ -30,10 +30,12 @@ constraint fkUsuarioEmpresa
 
 -- ------------------------------------------------------------------
 create table transporte(
-idTransporte INT PRIMARY KEY auto_increment,
+idTransporte int auto_increment,
+empresa int,
+constraint pkComposta 
+	primary key (idTransporte, empresa),
 nome varchar(45) NOT NULL,
 placa char(7) NOT NULL,
-empresa int NOT NULL,
 constraint fkTransporteEmpresa
 	foreign key (empresa) references cadastroEmpresa(idEmpresa)
 );
@@ -82,12 +84,11 @@ insert into usuario values
 (default, 5, 'Lucas Almeida', 'analista', 'lucas@startupx.com', 'start2025');
 
 insert into transporte values 
-(default, 'caminhão1', 'QJT2032', 1),
-(default, 'van1', 'FBA5621', 2),
-(default, 'caminhão2A', 'IUA9234', 3),
-(default, 'van1C', 'IOK1F31', 4),
-(default, 'caminhão2', 'AFD9V23', 5);
-
+(default, 1, 'caminhão1', 'QJT2032'),
+(default, 2,'van1', 'FBA5621'),
+(default, 3, 'caminhão2A', 'IUA9234'),
+(default, 4, 'van1C', 'IOK1F31'),
+(default, 5, 'caminhão2', 'AFD9V23');
 
 insert into sensor values 
 (default, 'Sensor Vacinas Covid', 'LM35', 'Ativo', 1, 1),
