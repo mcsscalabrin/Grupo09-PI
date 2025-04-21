@@ -49,29 +49,29 @@
   }
   
   /* Apresentção */
-  .hero {
+  .mensagens-home {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
   }
   
-  .hero-text {
+  .mensagem-home {
     max-width: 50%;
   }
   
-  .hero-text h1 {
+  .mensagem-home h1 {
     font-size: 36px;
     color: #0073d8;
     margin-bottom: 20px;
   }
   
-  .hero-text p {
+  .mensagem-home p {
     font-size: 18px;
     margin-bottom: 30px;
   }
   
-  .hero-text .btn {
+  .mensagem-home .btn {
     padding: 12px 24px;
     background-color: #0073d8;
     color: #fff;
@@ -82,13 +82,13 @@
     transition: background-color 0.3s;
   }
   
-  .hero-text .btn:hover {
+  .mensagem-home .btn:hover {
     background-color: #005fa3;
   }
   
   
   /* Caixas */
-  .features {
+  .sobre {
     margin-top: 60px;
     display: flex;
     justify-content: space-between;
@@ -96,7 +96,7 @@
     flex-wrap: wrap;
   }
   
-  .feature-card {
+  .sobre-card {
     background-color: #0073d8;
     color: white;
     padding: 20px;
@@ -106,7 +106,7 @@
     box-shadow: 0 5px 10px rgba(0,0,0,0.4);
   }
   
-  .feature-card h2 {
+  .sobre-card h2 {
     font-size: 20px;
     margin-bottom: 10px;
   }
@@ -132,13 +132,4 @@
   .more-info .btn:hover {
     background-color: #005fa3;
   }
-  
-
-  .footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #eaeaea;
-    margin-top: 60px;
-    font-size: 14px;
-  } 
   
