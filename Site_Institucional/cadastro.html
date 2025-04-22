@@ -86,8 +86,8 @@
         if (nome == "" || email == "" || senha == "" || cnpj == "") {
             alert("Por favor, preencha todos os campos obrigatórios.");
             validado = false;
-        } else if (email.indexOf('@') == -1 || email.indexOf('.') == -1) {
-            alert("Por favor, insira um endereço de e-mail válido.");
+        } else if (email.indexOf('@') == -1 || email.indexOf('.') == -1 || email.indexOf('@') > email.lastIndexOf('.') || email.indexOf('@') == 0 || email.lastIndexOf('.') == email.length - 1) {
+            alert("Este endereço de email não é válido.");
             validado = false;
         } else if (senha.length < 6) {
             alert("A senha deve ter pelo menos 6 caracteres.");
