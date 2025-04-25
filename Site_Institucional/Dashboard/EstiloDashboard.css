@@ -3,12 +3,19 @@
 *{
     font-family: "Segoe UI", sans-serif;
 }
-body, html {
+body{
     margin: 0px;
-    padding: 40px 0px 0px 0px;
+    padding: 75px 0px 0px 0px;
     width: 100%;
     background-color: aliceblue;
     background-image: url("Fundo.png");
+}
+
+html{
+    margin: 0px;
+    padding: 0px 0px 0px 0px;
+    width: 100%;
+    background-color: aliceblue;
 }
 
 #barra_superior {
@@ -42,14 +49,15 @@ body, html {
 #dashboard {
     display: flex;
     flex-wrap: wrap; /*Define que os elementos podem quebrar linha*/
-    width: 90%; 
+    width: 94%; 
+    height: 50vh;
     align-self: center;
     margin: 0% 0% 0% 1.5%;
     justify-content: center;
 }
 .grafico {
     width: 45%;
-    height: 40%;
+    height: 52vh;
     margin: 0.5%;
     padding: 2%;
     display: flex;
@@ -61,15 +69,20 @@ body, html {
 }
 .card {
     width: 20%;
-    height: 50%;
-    margin: 0.5%;
+    margin: 0.3% 0.5% 0.3% 0.5%;
     padding: 2%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: small;
     background-color: whitesmoke;
+    text-align: center;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 
+}
+
+.dado_card {
+    font-size: x-large;
 }
