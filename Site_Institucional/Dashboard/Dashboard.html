@@ -6,34 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="EstiloDashboard.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <title>Dashboard</title>
+  <title>Dados Transporte de Vacinas</title>
 </head>
 
 <body>
   <span id="barra_superior">
     <p id="titulo_pagina">SensiVacc</p>
-    <p> Dashboard Dados Transporte de Vacinas</p>
+    <p>Dados Transporte de Vacinas</p>
   </span>
   <div id="dashboard">
     <span class="card">
-      <h1>1</h1> <br>
+      <b class="dado_card">2</b> 
       <p>Alerta de Temperatura Essa Semana</p>
+      <i style="color: green">▼1 alerta a menos que a semana anterior</i>
     </span>
     <span class="card">
-      <h1>12:00</h1> <br>
+      <b class="dado_card">12:00</b> 
       <p>Horário Com as Temperaturas Mais Altas</p>
     </span>
     <span class="card">
-      <h1>5</h1> <br>
+      <b class="dado_card">10</b> 
       <p>Alertas de Temperatura Nesse Semestre</p>
+      <i style="color: red;">▲  2 alertas a mais que no semestre anterior</i>
     </span>
     <span class="card">
-      <h1>Janeiro</h1> <br>
+      <b class="dado_card">Janeiro</b> 
       <p>Mês Com a Maior Quantidade de Alertas</p>
     </span>
     <span class="grafico"> <canvas id="Linha"></canvas> </span>
     <span class="grafico"> <canvas id="Barras"></canvas> </span>
-
   </div>
 
 </body>
@@ -93,8 +94,8 @@
       labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
       datasets: [
         {
-          label: 'Temperatura Média',
-          data: [7.5, 7.1, 5, 4, 3, 3],
+          label: 'Número de alertas',
+          data: [3, 2, 2, 2, 1, 0],
           borderWidth: 1
         }]
     },
@@ -111,14 +112,14 @@
           beginAtZero: true,
           title: {
             display: true,
-            text: 'Temperatura °C'
+            text: 'Número de Alertas'
           },
         }
       },
       plugins: {
         title: {
           display: true,
-          text: 'Temperatura Média dos Veículos no Primeiro Semestre de 2025'
+          text: 'Número de Alertas dos Veículos no Primeiro Semestre de 2025'
         }
       }
     }
