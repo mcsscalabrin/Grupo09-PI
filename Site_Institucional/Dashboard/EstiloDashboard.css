@@ -3,40 +3,60 @@
 *{
     font-family: "Segoe UI", sans-serif;
 }
+
 body{
-    margin: 0px;
-    padding: 75px 0px 0px 0px;
+    margin: 0vh;
+    padding: 6% 0% 0% 0%;
     width: 100%;
     background-color: aliceblue;
     background-image: url("Fundo.png");
+    background-size: cover;
 }
 
 html{
-    margin: 0px;
-    padding: 0px 0px 0px 0px;
+    margin: 0vh;
+    padding: 0vh 0vh 0vh 0vh;
     width: 100%;
     background-color: aliceblue;
 }
 
-#barra_superior {
-    background-color: whitesmoke;
+.navbar {
     width: 100%;
-    height: 60px;
-    padding-left: 2%;
-    margin: 0px 0px 10px 0px;
-    border-radius: 0px 0px 20px 20px;
-    position: fixed;
-    top: 0;
-    opacity: 95%;
+    height: 10vh;
+    box-sizing: border-box;
     display: flex;
-    font-size: 18px;
+    position: fixed;
+    font-size: 3vh;
     font-weight: bold;
+    margin: 0vh 0vh 1vh 0vh;
+    border-radius: 0vh 0vh 2vh 2vh;
+    top: 0;
+    padding: 1vh 1vh 1vh 2.5vh;
+    opacity: 98%;
     gap: 2%;
+    background-color: #0073d8;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    box-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.3);
 }
 
-#titulo_pagina {
-    color: #0075cd;
+.navbar .logo {
+    font-size: 5vh;
+    font-weight: bold;
+  }
+
+.navbar nav a:hover {
+  text-decoration: underline;
 }
+
+.navbar nav a {
+    margin-right: 3vh;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 3.5vh;
+  }
 
 #img_logo {
     background-image: url("https://cdn.pixabay.com/photo/2013/07/13/10/23/temperature-157127_1280.png"); 
@@ -46,27 +66,26 @@ html{
     display: inline;
     background-size: cover; 
 }
-#dashboard {
-    display: flex;
-    flex-wrap: wrap; /*Define que os elementos podem quebrar linha*/
-    width: 94%; 
-    height: 50vh;
-    align-self: center;
-    margin: 0% 0% 0% 1.5%;
-    justify-content: center;
-}
-.grafico {
-    width: 45%;
-    height: 52vh;
-    margin: 0.5%;
-    padding: 2%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: whitesmoke;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 
+#dashboard {
+    width: 15%;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 3.5vh;
 }
+
+#cards {
+    display: flex;
+    flex-wrap: wrap; 
+    width: 94%; 
+    height: 40%;
+    align-self: center;
+    margin: 0% 0% 0.2% 1.5%;
+    justify-content: center;
+}
+
 .card {
     width: 20%;
     margin: 0.3% 0.5% 0.3% 0.5%;
@@ -77,12 +96,60 @@ html{
     align-items: center;
     justify-content: center;
     font-size: small;
-    background-color: whitesmoke;
     text-align: center;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-
+    box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.1);
+    border-radius: 1vh;
+    background-color: whitesmoke;
 }
 
 .dado_card {
     font-size: x-large;
 }
+
+#graficos {
+    display: flex;
+    flex-wrap: wrap; 
+    width: 94%; 
+    height: 35%;
+    align-self: center;
+    margin: 0% 0% 0% 1.5%;
+    justify-content: center;
+}
+
+#metricas{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0.1%;
+    box-sizing: border-box;
+}
+
+.metrica{
+    display: flex;
+    flex-wrap: wrap; 
+    width: 94%; 
+    height: 40%;
+    align-self: center;
+    margin: 0% 0% 5% 1.5%;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.1);
+    background-color: #0073d8;
+    color: whitesmoke;
+    border-radius: 1vh;
+}
+
+.grafico {
+    width: 40%;
+    height: 50vh;
+    margin: 0.5%;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: whitesmoke;
+    box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.1);
+    border-radius: 1vh;
+}
+

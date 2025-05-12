@@ -10,55 +10,73 @@
 </head>
 
 <body>
-  <span id="barra_superior">
-    <p id="titulo_pagina">SensiVacc</p>
-    <p>Dados Transporte de Vacinas</p>
-  </span>
-  <div id="dashboard">
+  <header class="navbar">
+    <div class="logo">Sensi<span>Vacc</span></div>
+    <Select id="dashboard">
+      <option value="Dados Gerais">Dados Gerais</option>
+      <option value="Caminhão1">Caminhão1</option>
+      <option value="Caminhão2">Caminhão2</option>
+      <option value="Caminhão3">Caminhão3</option>
+      <option value="Caminhão4">Caminhão4</option>
+    </Select>
+    <nav>
+      <a href="index.html" class="active">Início</a> <!--Atualizar os Links-->
+      <a href="login.html">Sair</a>
+    </nav>
+  </header>
+  <div id="cards">
     <span class="card">
-      <b class="dado_card">2</b> 
-      <p>Alerta de Temperatura Essa Semana</p>
-      <i style="color: green">▼1 alerta a menos que a semana anterior</i>
+      <b class="dado_card">2</b>
+      <p>Veículos Pecisam de Atenção</p>
+      <i style="color: blue">🔍︎ Veja Quais</i>
     </span>
     <span class="card">
-      <b class="dado_card">12:00</b> 
-      <p>Horário Com as Temperaturas Mais Altas</p>
+      <b class="dado_card">3/4</b>
+      <p>dos Veículos Estão Ativos</p>
+      <i style="color: blue">🔍︎Veja Quais</i>
     </span>
     <span class="card">
-      <b class="dado_card">10</b> 
-      <p>Alertas de Temperatura Nesse Semestre</p>
-      <i style="color: red;">▲  2 alertas a mais que no semestre anterior</i>
+      <b class="dado_card">10</b>
+      <p>Alerta(s) de Temperatura Nesse Semestre</p>
+      <i style="color: red;">▲ 2 a mais que no semestre anterior</i>
     </span>
     <span class="card">
-      <b class="dado_card">Janeiro</b> 
-      <p>Mês Com a Maior Quantidade de Alertas</p>
+      <b class="dado_card">2</b>
+      <p>Alerta(s) de Temperatura Essa Semana</p>
+      <i style="color: green">▼1 a menos que a semana anterior</i>
     </span>
-    <span class="grafico"> <canvas id="Linha"></canvas> </span>
-    <span class="grafico"> <canvas id="Barras"></canvas> </span>
+  </div>
+  <div id="graficos">
+    <div id="metricas">
+      <span class="metrica">
+        <p>Métricas de Alerta:</p>
+      </span>
+      <span class="metrica">
+        <p>Temperatura máxima: <b>8°C</b></p>
+      </span>
+      <span class="metrica">
+        <p>Temperatura mínima: <b>2°C</b></p>
+      </span>
+    </div>
+    <span class="grafico"> <canvas id="barras1"></canvas> </span>
+    <span class="grafico"> <canvas id="barras2"></canvas> </span>
   </div>
 
 </body>
 
 <script>
-  const js_linha = document.getElementById('Linha');
-  const js_barras = document.getElementById('Barras');
+  const js_barras1 = document.getElementById('barras1');
+  const js_barras2 = document.getElementById('barras2');
 
-  new Chart(js_linha, {
-    type: 'line',
+  new Chart(js_barras1, {
+    type: 'bar',
     data: {
-      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+      labels: ['Caminhão1', 'Caminhão2', 'Caminhão3', 'Caminhão4'],
       datasets: [
         {
-          label: 'Caminhão1',
-          data: [8.1, 7.3, 5.3, 5, 4.5, 4],
-        },
-        {
-          label: 'Caminhão2',
-          data: [7, 6.1, 6.1, 6.8, 6.4, 5.7],
-        },
-        {
-          label: 'Caminhão3',
-          data: [7.3, 5.2, 3.5, 3.7, 4.1, 4.7],
+          label: 'Número de Alertas',
+          data: [2, 0, 0, 0],
+          borderWidth: 1
         }]
     },
     options: {
@@ -67,28 +85,27 @@
           beginAtZero: true,
           title: {
             display: true,
-            text: 'Horário'
+            text: 'Veículos'
           },
         },
         y: {
           beginAtZero: true,
           title: {
             display: true,
-            text: 'Temperatura °C'
+            text: 'Número de Alertas'
           },
         }
       },
       plugins: {
         title: {
           display: true,
-          text: 'Temperatura do Refrigerador nas Últimas Horas'
+          text: 'Os 4 Veículos que Mais Emitiram Alertas Nesta Semana'
         }
       }
-    },
-
+    }
   });
 
-  new Chart(js_barras, {
+  new Chart(js_barras2, {
     type: 'bar',
     data: {
       labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
@@ -124,6 +141,53 @@
       }
     }
   });
+
+  /* Modelo de Gráfico de linhas
+  
+   new Chart(js_linha, {
+      type: 'line',
+      data: {
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        datasets: [
+          {
+            label: 'Caminhão1',
+            data: [8.1, 7.3, 5.3, 5, 4.5, 4],
+          },
+          {
+            label: 'Caminhão2',
+            data: [7, 6.1, 6.1, 6.8, 6.4, 5.7],
+          },
+          {
+            label: 'Caminhão3',
+            data: [7.3, 5.2, 3.5, 3.7, 4.1, 4.7],
+          }]
+      },
+      options: {
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Horário'
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Temperatura °C'
+            },
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Temperatura do Refrigerador nas Últimas Horas'
+          }
+        }
+      },
+  
+    });*/
 </script>
 
 </html>
