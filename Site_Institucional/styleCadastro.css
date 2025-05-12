@@ -102,7 +102,7 @@ body {
     width: 100%;
     padding: 12px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 1rem;
     outline: none;
 }
@@ -125,11 +125,11 @@ body {
 }
 
 .btn-acessar-cadastro {
-    width: 50%;
+    width: 100%;
     background-color: #ffffff;
     color: #0075cd;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 12px;
     font-size: 1rem;
     font-weight: 600;
@@ -138,11 +138,11 @@ body {
 }
 
 .btn-acessar {
-    width: 50%;
+    width: 100%;
     background-color: #ffffff;
     color: #0075cd;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 12px;
     font-size: 1rem;
     font-weight: 600;
