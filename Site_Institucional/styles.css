@@ -1,0 +1,208 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #222;
+  font-size: 1rem;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #0073d8;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: fixed;        
+  top: 0;                 
+  left: 0;
+  width: 100%;
+  z-index: 1000;          
+}
+
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar .logo span {
+  font-weight: normal;
+}
+
+.navbar nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+  text-decoration: underline;
+}
+
+/* Container principal */
+.container-home {
+  padding: 50px 80px;
+}
+
+/* Mensagem de boas-vindas */
+.mensagens-home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+  padding-top: 50px;
+}
+
+.mensagem-home {
+  max-width: 100%;
+}
+
+.mensagem-home h1 {
+  font-size: 36px;
+  color: #0073d8;
+  margin-bottom: 20px;
+}
+
+.mensagem-home p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* Seção Valores */
+.valores {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.valores h1 {
+  font-size: 2rem;
+  color: #0073d8;
+  margin-bottom: 40px;
+}
+
+.caixas {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.valores-mensagem {
+  background-color: #0073d8;
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.valores-mensagem h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.valores-mensagem p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Sobre a empresa */
+.container-sobre-empresa {
+  padding: 60px 40px;
+  background-color: #0073d8;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container-sobre-empresa .titulo {
+  font-size: 2rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sobre-mensagem {
+  margin-bottom: 30px;
+}
+
+.sobre-mensagem h2 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.sobre-mensagem p {
+  font-size: 1.1rem;
+  line-height: 2.0;
+  color: #ffffff;
+}
+
+/* Seção do time */
+.equipe {
+  padding: 60px 40px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.equipe h2 {
+  font-size: 2rem;
+  color: #0073d8;
+  margin-bottom: 40px;
+}
+
+.caixas-time {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.caixa-integrante {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  padding: 20px;
+  text-align: center;
+}
+
+.foto-integrante {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #e0e0e0;
+}
+
+.foto-integrante img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caixa-integrante h3 {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Rodapé */
+.rodape {
+  text-align: center;
+  padding: 15px;
+  background-color:#ffffff;
+  margin-top: 50px;
+  font-size: 14px;
+}
