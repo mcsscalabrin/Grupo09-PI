@@ -39,7 +39,6 @@
 </html>
 <script>
     function calcular() {
-        var cliente = nome_cliente.value;
         var vacinasTransp = Number(vacinas_transp.value);
         var valorVacina = Number(valor_vacina.value);
         var viagensMes = Number(viagens_mes.value);
@@ -52,7 +51,7 @@
             div_mensagem.innerHTML = ``;
             alert('Você precisa inserir dados nos campos');
         } else {
-            div_mensagem.innerHTML = `<br><strong>Caro cliente ${cliente}.<br><br>
+            div_mensagem.innerHTML = `<br><strong>Caro cliente.<br><br>
             A porcentagem de perda da sua simulação será ${percentualPerda}%<br>
             O que totaliza, em reais, R$ ${prejuizo}<br><br>
             Contudo, a quantia em R$ perdida por amo seria de aproximadamente R$${prejuizo * 12}</strong>`;

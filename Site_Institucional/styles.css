@@ -1,9 +1,13 @@
-/* Reset básico */
+/* Reset e fonte */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -12,26 +16,26 @@ body {
   font-size: 1rem;
 }
 
-/* Navbar */
+/* Navbar fixa */
 .navbar {
   background-color: #0073d8;
   padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #ffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  position: fixed;        
-  top: 0;                 
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;          
+  z-index: 1000;
 }
-
 
 .navbar .logo {
   font-size: 24px;
   font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
 
 .navbar .logo span {
@@ -44,138 +48,164 @@ body {
   color: #fff;
   font-weight: 600;
   font-size: 17px;
+  transition: color 0.3s ease;
 }
 
-.navbar nav a:hover,
-.navbar nav a.active {
-  text-decoration: underline;
+.navbar nav a:hover {
+  color: #333;
 }
 
 /* Container principal */
 .container-home {
-  padding: 50px 80px;
+  padding: 130px 80px 80px;
 }
 
 /* Mensagem de boas-vindas */
 .mensagens-home {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
   margin-bottom: 60px;
-  padding-top: 50px;
-}
-
-.mensagem-home {
-  max-width: 100%;
 }
 
 .mensagem-home h1 {
-  font-size: 36px;
+  font-size: 56px;
   color: #0073d8;
   margin-bottom: 20px;
 }
 
 .mensagem-home p {
-  font-size: 18px;
+  font-size: 22px;
   margin-bottom: 15px;
 }
 
 /* Seção Valores */
 .valores {
-  padding: 40px 0;
+  padding: 80px 40px;
   text-align: center;
+  background: linear-gradient(to right, #0073d8, #2196f3);
+  color: white;
 }
 
 .valores h1 {
-  font-size: 2rem;
-  color: #0073d8;
+  font-size: 37px;
   margin-bottom: 40px;
 }
 
 .caixas {
   display: flex;
-  gap: 30px;
+  gap: 60px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.valores-mensagem {
-  background-color: #0073d8;
-  color: white;
-  padding: 25px;
+.valores-caixa {
+  background-color: white;
+  color: #0073d8;
+  padding: 40px;
   border-radius: 15px;
   width: 300px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
-.valores-mensagem h3 {
-  font-size: 20px;
+.valores-caixa:hover {
+  transform: scale(1.05);
+}
+
+.valores-caixa h3 {
+  font-size: 24px;
   margin-bottom: 10px;
 }
 
-.valores-mensagem p {
-  font-size: 16px;
+.valores-caixa p {
+  font-size: 19px;
   line-height: 1.5;
 }
 
 /* Sobre a empresa */
+/* Layout em colunas para "Sobre a empresa" */
+.sobre-conteudo {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.sobre-coluna {
+  flex: 1;
+  min-width: 300px;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Visual refinado para a seção */
 .container-sobre-empresa {
-  padding: 60px 40px;
-  background-color: #0073d8;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 80px 60px;
+  background: linear-gradient(135deg, #0073d8 0%, #005bb5 100%);
 }
 
-.container-sobre-empresa .titulo {
-  font-size: 2rem;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 40px;
+.container-sobre-empresa h1 {
+    color: #ffffff;
+    padding:20px;
+    font-size: 40px;
+    margin: 8px;
 }
 
-.sobre-mensagem {
-  margin-bottom: 30px;
+.sobre-coluna h2 {
+  font-size: 35px;
+  margin-bottom: 15px;
+  color: #fff;
 }
 
-.sobre-mensagem h2 {
-  font-size: 1.5rem;
-  color: #ffffff;
-  margin-bottom: 10px;
+.sobre-coluna p {
+  font-size: 22px;
+  line-height: 1.8;
+  text-align: justify;
 }
 
-.sobre-mensagem p {
-  font-size: 1.1rem;
-  line-height: 2.0;
-  color: #ffffff;
+/* Sombra suave para seções */
+section {
+  transition: all 0.3s ease-in-out;
 }
+
+section:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
 
 /* Seção do time */
 .equipe {
-  padding: 60px 40px;
-  background-color: #ffffff;
+  padding: 80px 40px;
+  background-color: #fff;
   text-align: center;
 }
 
 .equipe h2 {
-  font-size: 2rem;
+  font-size: 3rem;
   color: #0073d8;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .caixas-time {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 40px;
 }
 
 .caixa-integrante {
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 200px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  width: 220px;
   padding: 20px;
   text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.caixa-integrante:hover {
+  transform: translateY(-10px);
 }
 
 .foto-integrante {
@@ -194,15 +224,30 @@ body {
 }
 
 .caixa-integrante h3 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #333;
 }
 
 /* Rodapé */
 .rodape {
   text-align: center;
-  padding: 15px;
-  background-color:#ffffff;
-  margin-top: 50px;
+  padding: 20px;
+  background-color: #1a1a1a;
+  color: #fff;
   font-size: 14px;
 }
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
