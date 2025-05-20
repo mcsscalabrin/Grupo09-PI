@@ -19,6 +19,9 @@
       <option value="Caminhão3">Caminhão3</option>
       <option value="Caminhão4">Caminhão4</option>
     </Select>
+    <div id="div_user"> <img src="user.png" alt="logo">
+      <p id="nome_user">Usuário 1</p>
+    </div>
     <nav>
       <a href="index.html" class="active">Início</a> <!--Atualizar os Links-->
       <a href="login.html">Sair</a>
@@ -28,23 +31,31 @@
     <span class="card">
       <b class="dado_card">2</b>
       <p>Veículos Pecisam de Atenção</p>
-      <i style="color: blue">🔍︎ Veja Quais</i>
+      <i id="kpi1" class="kpi" style="color: blue" onclick="click_kp1()">🔍︎ Veja Quais</i>
     </span>
+    <div id="pop_up1"  class="pop_up"><button onclick="fechar()">X</button></div>
+
     <span class="card">
       <b class="dado_card">3/4</b>
       <p>dos Veículos Estão Ativos</p>
-      <i style="color: blue">🔍︎Veja Quais</i>
+      <i id="kpi2" class="kpi" style="color: blue" onclick="click_kp2()">🔍︎Veja Quais</i>
     </span>
+    <div id="pop_up2" class="pop_up"><button onclick="fechar()">X</button></div>
+
     <span class="card">
       <b class="dado_card">10</b>
       <p>Alerta(s) de Temperatura Nesse Semestre</p>
-      <i style="color: red;">▲ 2 a mais que no semestre anterior</i>
+      <i id="kpi3" class="kpi" style="color: red;" onclick="click_kp3()">▲ 2 a mais que no semestre anterior</i>
     </span>
+    <div id="pop_up3" class="pop_up"><button onclick="fechar()">X</button></div>
+
     <span class="card">
       <b class="dado_card">2</b>
       <p>Alerta(s) de Temperatura Essa Semana</p>
-      <i style="color: green">▼1 a menos que a semana anterior</i>
+      <i id="kpi4" class="kpi" style="color: green" onclick="click_kp1()">▼1 a menos que a semana anterior</i>
     </span>
+    <div id="pop_up4" class="pop_up"><button onclick="fechar()">X</button></div>
+
   </div>
   <div id="graficos">
     <div id="metricas">
@@ -65,6 +76,27 @@
 </body>
 
 <script>
+  function click_kp1() {
+    pop_up1.style.display = 'flex';
+  }
+  function click_kp2() {
+    pop_up2.style.display = 'flex';
+  }
+  function click_kp3() {
+    pop_up3.style.display = 'flex';
+  }
+  function click_kp4() {
+    pop_up4.style.display = 'flex';
+  }
+  
+
+  function fechar() {
+    pop_up1.style.display = 'none';
+    pop_up2.style.display = 'none';
+    pop_up3.style.display = 'none';
+    pop_up4.style.display = 'none';
+  }
+
   const js_barras1 = document.getElementById('barras1');
   const js_barras2 = document.getElementById('barras2');
 

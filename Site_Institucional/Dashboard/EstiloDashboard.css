@@ -8,8 +8,6 @@ body{
     margin: 0vh;
     padding: 6% 0% 0% 0%;
     width: 100%;
-    background-color: aliceblue;
-    background-image: url("Fundo.png");
     background-size: cover;
 }
 
@@ -18,6 +16,7 @@ html{
     padding: 0vh 0vh 0vh 0vh;
     width: 100%;
     background-color: aliceblue;
+    background-image: url("Fundo.png");
 }
 
 .navbar {
@@ -58,22 +57,25 @@ html{
     font-size: 3.5vh;
   }
 
-#img_logo {
-    background-image: url("https://cdn.pixabay.com/photo/2013/07/13/10/23/temperature-157127_1280.png"); 
-    width: 3.6%; 
-    height: 60%; 
-    margin: 1%;
-    display: inline;
-    background-size: cover; 
-}
 
 #dashboard {
-    width: 15%;
     text-align: center;
     background-color: transparent;
     border: none;
     font-weight: bold;
     font-size: 3.5vh;
+}
+
+#nome_user{
+    margin-left: 3%;
+    color: black;
+}
+
+#div_user {
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 #cards {
@@ -102,8 +104,21 @@ html{
     background-color: whitesmoke;
 }
 
+.kpi:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
 .dado_card {
     font-size: x-large;
+}
+
+.pop_up{ 
+    display: none;
+    position: fixed;
+    aspect-ratio: 2/1;
+    width: 70%;
+    background-color: gainsboro;
 }
 
 #graficos {
@@ -123,13 +138,15 @@ html{
     flex-direction: column;
     padding: 0.1%;
     box-sizing: border-box;
+    margin-top: 0.5%;
 }
 
 .metrica{
     display: flex;
     flex-wrap: wrap; 
-    width: 94%; 
-    height: 40%;
+    flex-direction: column;
+    aspect-ratio: 1/1;
+    width: 90%; 
     align-self: center;
     margin: 0% 0% 5% 1.5%;
     justify-content: center;
@@ -138,6 +155,7 @@ html{
     background-color: #0073d8;
     color: whitesmoke;
     border-radius: 1vh;
+    font-size: medium;
 }
 
 .grafico {
