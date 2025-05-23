@@ -115,10 +115,31 @@ html{
 
 .pop_up{ 
     display: none;
+    flex-direction: column;
     position: fixed;
     aspect-ratio: 2/1;
     width: 70%;
     background-color: gainsboro;
+    box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    box-sizing: border-box;
+    gap: 2%;
+    padding: 1%;
+    
+}
+
+.but_fechar{
+    position: fixed;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.ocorrencia{
+    aspect-ratio: 5/1;
+    width: 60%;
+    background-color: whitesmoke;
+    box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.1);
+    padding: 1%;
 }
 
 #graficos {
