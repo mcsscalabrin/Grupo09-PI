@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/dashboard.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>Dados Transporte de Vacinas</title>
+    </head>
+
+    <body>
+        <header class="navbar">
+            <div class="logo">Sensi<span>Vacc</span></div>
+            <Select id="dashboard">
+                <option value="Dados Gerais">Dados Gerais</option>
+                <option value="Caminhão1">Caminhão1</option>
+                <option value="Caminhão2">Caminhão2</option>
+                <option value="Caminhão3">Caminhão3</option>
+                <option value="Caminhão4">Caminhão4</option>
+            </Select>
+            <div id="div_user"> <img src="../assets/imgs/user.png" alt="logo">
+                <p id="nome_user"></p>
+            </div>
+            <nav>
+                <a href="#" class="active">Início</a>
+                <a href="../login.html" onclick="sair()">Sair</a>
+            </nav>
+        </header>
+        <div id="cards">
+            <span class="card">
+                <b class="dado_card">2</b>
+                <p>Veículos Pecisam de Atenção</p>
+                <i id="kpi1" class="kpi" style="color: blue" onclick="click_kp1()">🔍︎ Veja Quais</i>
+            </span>
+            <div id="pop_up1" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+                <div class="ocorrencia">
+                    <div>Caminhão1</div><span>1</span> Alerta(s)
+                </div>
+                <div class="ocorrencia">
+                    <div>Caminhão2</div><span>1</span> Alerta(s)
+                </div>
+            </div>
+
+            <span class="card">
+                <b class="dado_card">3/4</b>
+                <p>dos Veículos Estão Ativos</p>
+                <i id="kpi2" class="kpi" style="color: blue" onclick="click_kp2()">🔍︎Veja Quais</i>
+            </span>
+            <div id="pop_up2" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+                <div class="ocorrencia">
+                    <div>Caminhão1</div><span>Ativo</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>Caminhão2</div><span>Ativo</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>Caminhão3</div><span>Ativo</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>Caminhão4</div><span>Inativo</span>
+                </div>
+
+            </div>
+
+            <span class="card">
+                <b class="dado_card">10</b>
+                <p>Alerta(s) de Temperatura Nesse Semestre</p>
+                <i id="kpi3" class="kpi" style="color: red;" onclick="click_kp3()">▲ 2 a mais que no semestre
+                    anterior</i>
+            </span>
+            <div id="pop_up3" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão2</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão2</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão2</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão3</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
+                </div>
+            </div>
+
+            <span class="card">
+                <b class="dado_card">2</b>
+                <p>Alerta(s) de Temperatura Essa Semana</p>
+                <i id="kpi4" class="kpi" style="color: green" onclick="click_kp4()">▼1 a menos que a semana anterior</i>
+            </span>
+            <div id="pop_up4" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
+                </div>
+                <div class="ocorrencia">
+                    <div>xx/xx/2025</div>Veículo:<span>Caminhão2</span>
+                </div>
+            </div>
+
+        </div>
+        <div id="graficos">
+            <div id="metricas">
+                <span class="metrica">
+                    <p>Métricas de Alerta:</p>
+                </span>
+                <span class="metrica">
+                    <p>Temperatura máxima: <b>8°C</b></p>
+                </span>
+                <span class="metrica">
+                    <p>Temperatura mínima: <b>2°C</b></p>
+                </span>
+            </div>
+            <span class="grafico"> <canvas id="barras1"></canvas> </span>
+            <span class="grafico"> <canvas id="barras2"></canvas> </span>
+        </div>
+
+    </body>
+
+    <script>
+        // Verificar sessão do usuário
+        if (sessionStorage.ID_USUARIO == undefined) {
+            window.location = "../login.html";
+        }
+
+        // Exibir informações do usuário
+        nome_user.innerHTML = sessionStorage.NOME_USUARIO;
+
+        function sair() {
+            sessionStorage.clear();
+        }
+
+        function click_kp1() {
+            pop_up1.style.display = 'flex';
+        }
+        function click_kp2() {
+            pop_up2.style.display = 'flex';
+        }
+        function click_kp3() {
+            pop_up3.style.display = 'flex';
+        }
+        function click_kp4() {
+            pop_up4.style.display = 'flex';
+        }
+
+
+        function fechar() {
+            pop_up1.style.display = 'none';
+            pop_up2.style.display = 'none';
+            pop_up3.style.display = 'none';
+            pop_up4.style.display = 'none';
+        }
+
+        const js_barras1 = document.getElementById('barras1');
+        const js_barras2 = document.getElementById('barras2');
+
+        new Chart(js_barras1, {
+            type: 'bar',
+            data: {
+                labels: ['Caminhão1', 'Caminhão2', 'Caminhão3', 'Caminhão4'],
+                datasets: [
+                    {
+                        label: 'Número de Alertas',
+                        data: [2, 0, 0, 0],
+                        borderWidth: 1
+                    }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Veículos'
+                        },
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Número de Alertas'
+                        },
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Os 4 Veículos que Mais Emitiram Alertas Nesta Semana'
+                    }
+                }
+            }
+        });
+
+        new Chart(js_barras2, {
+            type: 'bar',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+                datasets: [
+                    {
+                        label: 'Número de alertas',
+                        data: [3, 2, 2, 2, 1, 0],
+                        borderWidth: 1
+                    }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Meses'
+                        },
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Número de Alertas'
+                        },
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Número de Alertas dos Veículos no Primeiro Semestre de 2025'
+                    }
+                }
+            }
+        });
+    </script>
+
+</html>

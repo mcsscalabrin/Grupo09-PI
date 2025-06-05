@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensiVacc - Cadastro</title>
+    <link rel="stylesheet" href="./css/sensivacc-style.css">
+  </head>
+
+  <body onload="listar()" class="overflow-hidden">
+    <div class="titulo">
+      <h2>
+        Cadastre-se, <span id="nome_digitado" style="color: #0075cd;"></span>
+        <br>
+        E entre para o nosso time <span style="color: #0075cd;">SensiVacc.</span>
+      </h2>
+    </div>
+
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro" style="display: none;">
+        <span id="mensagem_erro"></span>
+      </div>
+    </div>
+
+    <div class="card-cadastro">
+      <div class="card-content-cadastro">
+        <h2 class="login">CADASTRO</h2>
+
+        <div class="input-container">
+          <div class="input-group">
+            <label for="nome_input">Nome <span style="color: red;">*</span></label>
+            <input class="input" id="nome_input" placeholder="Ex: Marcos" oninput="atualizarTitulo()">
+          </div>
+          <div class="input-group">
+            <label for="email_input">E-mail <span style="color: red;">*</span></label>
+            <input class="input" id="email_input" placeholder="Ex: marcos@gmail.com">
+          </div>
+          <div class="input-group">
+            <label for="senha_input">Senha <span style="color: red;">*</span></label>
+            <input class="input" id="senha_input" type="password" placeholder="Ex: Sensivacc99*">
+          </div>
+          <div class="input-group">
+            <label for="confirmacao_senha_input">Confirmar Senha <span style="color: red;">*</span></label>
+            <input class="input" id="confirmacao_senha_input" type="password" placeholder="Confirme sua senha">
+          </div>
+          <div class="input-group">
+            <label for="codigo_input">Código de Ativação <span style="color: red;">*</span></label>
+            <input class="input" id="codigo_input" placeholder="Ex: 1ABCDE">
+          </div>
+        </div>
+
+        <button onclick="cadastrar()" class="btn-acessar-cadastro">Cadastrar</button>
+
+        <div class="login">
+          <span>Já é cliente?</span>
+          <a href="login.html" class="btn-login">Login</a>
+        </div>
+
+        <div id="div_aguardar" class="loading-div" style="display: none;">
+          <img src="./assets/circle-loading.gif" id="loading-gif">
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
+
+<script>
+  let listaEmpresasCadastradas = [];
+
+  function atualizarTitulo() {
+    nome_digitado.innerHTML = nome_input.value;
+  }
+
+  function cadastrar() {
+    aguardar();
+
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var codigoVar = codigo_input.value;
+    var idEmpresaVincular;
+
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      codigoVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Preencha todos os campos obrigatórios";
+      finalizarAguardar();
+      return false;
+    }
+
+    if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1 || emailVar.indexOf('@') > emailVar.lastIndexOf('.') || emailVar.indexOf('@') == 0 || emailVar.lastIndexOf('.') == emailVar.length - 1) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Este endereço de email não é válido.";
+      finalizarAguardar();
+      return false;
+    }
+
+    if (senhaVar.length < 6) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "A senha deve ter pelo menos 6 caracteres.";
+      finalizarAguardar();
+      return false;
+    }
+
+    if (senhaVar != confirmacaoSenhaVar) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "As senhas não coincidem.";
+      finalizarAguardar();
+      return false;
+    }
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    var codigoValido = false;
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].id;
+        codigoValido = true;
+        console.log("Código de ativação válido.");
+        break;
+      }
+    }
+
+    if (!codigoValido) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Código de ativação inválido.";
+      finalizarAguardar();
+      return false;
+    }
+
+    setTimeout(sumirMensagem, 5000);
+
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        idEmpresaVincularServer: idEmpresaVincular
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+          mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, 2000);
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "Erro ao realizar cadastro. Tente novamente.";
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+          });
+          console.log("Empresas carregadas:", listaEmpresasCadastradas);
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+
+  function aguardar() {
+    div_aguardar.style.display = "flex";
+  }
+
+  function finalizarAguardar() {
+    div_aguardar.style.display = "none";
+  }
+
+  function limparFormulario() {
+    nome_input.value = "";
+    email_input.value = "";
+    senha_input.value = "";
+    confirmacao_senha_input.value = "";
+    codigo_input.value = "";
+    nome_digitado.innerHTML = "";
+  }
+</script>
