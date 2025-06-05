@@ -1,247 +1,1138 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/dashboard.css">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Dados Transporte de Vacinas</title>
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="EstiloDashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Dados Transporte de Vacinas</title>
+</head>
 
-    <body>
-        <header class="navbar">
-            <div class="logo">Sensi<span>Vacc</span></div>
-            <Select id="dashboard">
-                <option value="Dados Gerais">Dados Gerais</option>
-                <option value="Caminhão1">Caminhão1</option>
-                <option value="Caminhão2">Caminhão2</option>
-                <option value="Caminhão3">Caminhão3</option>
-                <option value="Caminhão4">Caminhão4</option>
-            </Select>
-            <div id="div_user"> <img src="../assets/imgs/user.png" alt="logo">
-                <p id="nome_user"></p>
-            </div>
-            <nav>
-                <a href="#" class="active">Início</a>
-                <a href="../login.html" onclick="sair()">Sair</a>
-            </nav>
-        </header>
-        <div id="cards">
-            <span class="card">
-                <b class="dado_card">2</b>
-                <p>Veículos Pecisam de Atenção</p>
-                <i id="kpi1" class="kpi" style="color: blue" onclick="click_kp1()">🔍︎ Veja Quais</i>
-            </span>
-            <div id="pop_up1" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
-                <div class="ocorrencia">
-                    <div>Caminhão1</div><span>1</span> Alerta(s)
-                </div>
-                <div class="ocorrencia">
-                    <div>Caminhão2</div><span>1</span> Alerta(s)
-                </div>
-            </div>
+<body>
+  <header class="navbar">
+    <div class="logo">Sensi<span>Vacc</span></div>
+    <Select id="dashboard" onchange="dashEspecifica()">
+      <option value="Dados Gerais">Dados Gerais</option>
+    </Select>
+    <div id="div_user"> <img id="icon_user" src="../imagens/user.png" alt="logo">
+      <p id="nome_user">Usuário 1</p>
+    </div>
+    <nav>
+      <a href="../index.html" class="active">Início</a> <!--Atualizar os Links-->
+      <a href="../login.html">Sair</a>
+    </nav>
+  </header>
+  <div id="cards">
+    <span class="card">
+      <b class="dado_card" id="kpi1"></b>
+      <p>Veículos Pecisam de Atenção Imediata</p>
+      <i class="kpi" style="color: blue" onclick="click_kp1()">🔍︎Veja Quais</i>
+    </span>
+    <div id="pop_up1" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+      <div id="conteudo_pop1">
+      </div>
+    </div>
 
-            <span class="card">
-                <b class="dado_card">3/4</b>
-                <p>dos Veículos Estão Ativos</p>
-                <i id="kpi2" class="kpi" style="color: blue" onclick="click_kp2()">🔍︎Veja Quais</i>
-            </span>
-            <div id="pop_up2" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
-                <div class="ocorrencia">
-                    <div>Caminhão1</div><span>Ativo</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>Caminhão2</div><span>Ativo</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>Caminhão3</div><span>Ativo</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>Caminhão4</div><span>Inativo</span>
-                </div>
+    <span class="card">
+      <b class="dado_card" id="kpi2"></b>
+      <p>dos Veículos Estão Ativos</p>
+      <i class="kpi" style="color: blue" onclick="click_kp2()">🔍︎Veja Quais</i>
+    </span>
+    <div id="pop_up2" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+      <div id="conteudo_pop2">
+      </div>
 
-            </div>
+    </div>
 
-            <span class="card">
-                <b class="dado_card">10</b>
-                <p>Alerta(s) de Temperatura Nesse Semestre</p>
-                <i id="kpi3" class="kpi" style="color: red;" onclick="click_kp3()">▲ 2 a mais que no semestre
-                    anterior</i>
-            </span>
-            <div id="pop_up3" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão2</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão2</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão2</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão3</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
-                </div>
-            </div>
+    <span class="card">
+      <b class="dado_card" id="kpi3"></b>
+      <p>Alerta(s) de Temperatura (últimos 6 meses)</p>
+      <i class="kpi" id="compKpi3" style="color: red;" onclick="click_kp3()"></i>
+    </span>
+    <div id="pop_up3" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+      <div id="conteudo_pop3">
+      </div>
+    </div>
 
-            <span class="card">
-                <b class="dado_card">2</b>
-                <p>Alerta(s) de Temperatura Essa Semana</p>
-                <i id="kpi4" class="kpi" style="color: green" onclick="click_kp4()">▼1 a menos que a semana anterior</i>
-            </span>
-            <div id="pop_up4" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão1</span>
-                </div>
-                <div class="ocorrencia">
-                    <div>xx/xx/2025</div>Veículo:<span>Caminhão2</span>
-                </div>
-            </div>
+    <span class="card">
+      <b class="dado_card" id="kpi4"></b>
+      <p>Alerta(s) de Temperatura (últimos 7 dias)</p>
+      <i class="kpi" id="compKpi4" style="color: green" onclick="click_kp4()"></i>
+    </span>
+    <div id="pop_up4" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+      <div id="conteudo_pop4">
+      </div>
+    </div>
 
-        </div>
-        <div id="graficos">
-            <div id="metricas">
-                <span class="metrica">
-                    <p>Métricas de Alerta:</p>
-                </span>
-                <span class="metrica">
-                    <p>Temperatura máxima: <b>8°C</b></p>
-                </span>
-                <span class="metrica">
-                    <p>Temperatura mínima: <b>2°C</b></p>
-                </span>
-            </div>
-            <span class="grafico"> <canvas id="barras1"></canvas> </span>
-            <span class="grafico"> <canvas id="barras2"></canvas> </span>
-        </div>
+  </div>
+  <div id="graficos">
+    <div id="metricas">
+      <span class="metrica">
+        <p>Métricas de Alerta:</p>
+      </span>
+      <span class="metrica">
+        <p>Temperatura máxima: <b>8°C</b></p>
+      </span>
+      <span class="metrica">
+        <p>Temperatura mínima: <b>2°C</b></p>
+      </span>
+    </div>
+    <span class="grafico"> <canvas id="barras1"></canvas> </span>
+    <span class="grafico"> <canvas id="barras2"></canvas> </span>
+  </div>
 
-    </body>
+</body>
 
-    <script>
-        // Verificar sessão do usuário
-        if (sessionStorage.ID_USUARIO == undefined) {
-            window.location = "../login.html";
+<script>
+  nome_user.innerHTML = sessionStorage.NOME_USUARIO;
+  var js_tempoAtualizacao = '20000';
+  var js_graficoBarras1;
+  var js_graficoBarras2;
+
+  //Buscando veículos para montar dashboards
+  fetch("/dashboard/veiculos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      idEmpresaServer: sessionStorage.idEmpresa
+    })
+  }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+        dashboard.innerHTML = `<option value="Dados Gerais">Dados Gerais</option>`;
+        for (i = 0; i < resposta.length; i++) {
+          var registro = resposta[i];
+          dashboard.innerHTML += `<option value="${registro.nome}">${registro.nome}</option>`;
         }
+      });
+    }
+    else {
+      console.log("Houve um erro ao tentar exibir dados nas KPIs!");
 
-        // Exibir informações do usuário
-        nome_user.innerHTML = sessionStorage.NOME_USUARIO;
+      response.text().then(texto => {
+        console.error(texto);
+      });
+    }
 
-        function sair() {
-            sessionStorage.clear();
-        }
-
-        function click_kp1() {
-            pop_up1.style.display = 'flex';
-        }
-        function click_kp2() {
-            pop_up2.style.display = 'flex';
-        }
-        function click_kp3() {
-            pop_up3.style.display = 'flex';
-        }
-        function click_kp4() {
-            pop_up4.style.display = 'flex';
-        }
+  }).catch(function (erro) {
+    console.log(erro);
+  });
 
 
-        function fechar() {
-            pop_up1.style.display = 'none';
-            pop_up2.style.display = 'none';
-            pop_up3.style.display = 'none';
-            pop_up4.style.display = 'none';
-        }
 
-        const js_barras1 = document.getElementById('barras1');
-        const js_barras2 = document.getElementById('barras2');
 
-        new Chart(js_barras1, {
-            type: 'bar',
-            data: {
-                labels: ['Caminhão1', 'Caminhão2', 'Caminhão3', 'Caminhão4'],
-                datasets: [
-                    {
-                        label: 'Número de Alertas',
-                        data: [2, 0, 0, 0],
-                        borderWidth: 1
-                    }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Veículos'
-                        },
-                    },
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Número de Alertas'
-                        },
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Os 4 Veículos que Mais Emitiram Alertas Nesta Semana'
-                    }
-                }
-            }
+  function click_kp1() {
+    pop_up1.style.display = 'flex';
+
+    fetch("/dashboard/pop1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          conteudo_pop1.innerHTML = '';
+          for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            conteudo_pop1.innerHTML += `<div class="ocorrencia"><div><b>${registro.nome}</b></div><span>${registro.numAlerta}</span> Alerta(s) Hoje</div>`;
+          }
         });
+      }
+      else {
+        console.log("Houve um erro ao tentar exibir dados nas KPIs!");
 
-        new Chart(js_barras2, {
-            type: 'bar',
-            data: {
-                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-                datasets: [
-                    {
-                        label: 'Número de alertas',
-                        data: [3, 2, 2, 2, 1, 0],
-                        borderWidth: 1
-                    }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Meses'
-                        },
-                    },
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Número de Alertas'
-                        },
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Número de Alertas dos Veículos no Primeiro Semestre de 2025'
-                    }
-                }
-            }
+        response.text().then(texto => {
+          console.error(texto);
         });
-    </script>
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+  function click_kp2() {
+    pop_up2.style.display = 'flex';
+
+    fetch("/dashboard/pop2", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          conteudo_pop2.innerHTML = '';
+          for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            conteudo_pop2.innerHTML += `<div class="ocorrencia"><div><b>${registro.nome}</b></div><span>${registro.status}</span></div>`;
+          }
+        });
+      }
+      else {
+        console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+        response.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+  function click_kp3() {
+    pop_up3.style.display = 'flex';
+
+    fetch("/dashboard/pop3", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          conteudo_pop3.innerHTML = '';
+          for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            conteudo_pop3.innerHTML += `<div class="ocorrencia"><div><b>${registro.nome}</b></div><span> DataHora: ${registro.dataAlerta} Temperatura: ${registro.temperatura}</span>°C</div>`;
+          }
+        });
+      }
+      else {
+        console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+        response.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+  function click_kp4() {
+    pop_up4.style.display = 'flex';
+
+    fetch("/dashboard/pop4", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          conteudo_pop4.innerHTML = '';
+          for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            conteudo_pop4.innerHTML += `<div class="ocorrencia"><div><b>${registro.nome}</b></div><span> DataHora: ${registro.dataAlerta} Temperatura: ${registro.temperatura}</span>°C</div>`;
+          }
+        });
+      }
+      else {
+        console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+        response.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+
+  function fechar() {
+    pop_up1.style.display = 'none';
+    pop_up2.style.display = 'none';
+    pop_up3.style.display = 'none';
+    pop_up4.style.display = 'none';
+  }
+
+  //KPI1
+  function KPI1() {
+    if (dashboard.value == 'Dados Gerais') {
+      fetch("/dashboard/kp1", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          idEmpresaServer: sessionStorage.idEmpresa
+        })
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            kpi1.innerHTML = resposta[0].numVeiculos;
+          });
+        }
+        else {
+          console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+          response.text().then(texto => {
+            console.error(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      });
+    }
+  }
+  KPI1();
+  setInterval(() => { KPI1() }, js_tempoAtualizacao);
+
+
+  //KPI2
+  function KPI2() {
+    if (dashboard.value == 'Dados Gerais') {
+      fetch("/dashboard/kp2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          idEmpresaServer: sessionStorage.idEmpresa
+        })
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            if (resposta[0] && resposta[1]) {
+              kpi2.innerHTML = `${resposta[1].numVeiculos}/${Number(resposta[0].numVeiculos) + Number(resposta[1].numVeiculos)}`;
+            }
+            else if (resposta[0] && resposta[0].statusVeiculo == '1') {
+              kpi2.innerHTML = `${resposta[0].numVeiculos}/${resposta[0].numVeiculos}`;
+            }
+            else if (resposta[0] && resposta[0].statusVeiculo == '0') {
+              kpi2.innerHTML = `0/${resposta[0].numVeiculos}`;
+            }
+            else {
+              kpi2.innerHTML`0/0`;
+            }
+          });
+        }
+        else {
+          console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+          response.text().then(texto => {
+            console.error(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      });
+    }
+  }
+  KPI2();
+  setInterval(() => { KPI2() }, js_tempoAtualizacao);
+
+
+  //KPI3
+  function KPI3() {
+    if (dashboard.value == 'Dados Gerais') {
+      fetch("/dashboard/kp3", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          idEmpresaServer: sessionStorage.idEmpresa
+        })
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            kpi3.innerHTML = resposta[0].numAlerta;
+          });
+        }
+        else {
+          console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+          response.text().then(texto => {
+            console.error(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      });
+    }
+  }
+
+  KPI3();
+  setInterval(() => { KPI3() }, js_tempoAtualizacao);
+
+
+  //Comparação KPI3
+  function KPI3COMP(params) {
+    if (dashboard.value == 'Dados Gerais') {
+      fetch("/dashboard/kp3comp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          idEmpresaServer: sessionStorage.idEmpresa
+        })
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            var js_comparacao = resposta[0].seisAtual - resposta[0].seisAnterior;
+            var js_comparacao = Number(js_comparacao);
+
+            if (js_comparacao > 0) {
+              compKpi3.style.color = 'red';
+              compKpi3.innerHTML = `▲${js_comparacao} a mais que nos 6 meses anteriores`;
+            }
+            else if (js_comparacao < 0) {
+              js_comparacao *= -1;
+              compKpi3.style.color = 'green';
+              compKpi3.innerHTML = `▼${js_comparacao} a menos que nos 6 meses anteriores`;
+            }
+            else {
+              compKpi3.style.color = 'goldenrod';
+              compKpi3.innerHTML = `Número igual ao dos 6 meses anteriores`;
+
+            }
+          });
+        }
+        else {
+          console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+          response.text().then(texto => {
+            console.error(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      });
+    }
+  }
+  KPI3COMP();
+  setInterval(() => { KPI3COMP() }, js_tempoAtualizacao);
+
+
+  //KPI4
+  function KPI4() {
+    if (dashboard.value == 'Dados Gerais') {
+      fetch("/dashboard/kp4", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          idEmpresaServer: sessionStorage.idEmpresa
+        })
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            kpi4.innerHTML = resposta[0].numAlerta;
+          });
+        }
+        else {
+          console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+          response.text().then(texto => {
+            console.error(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      });
+    }
+  }
+  KPI4();
+  setInterval(() => { KPI4() }, js_tempoAtualizacao);
+
+
+  //Comparação KPI4
+  function KPI4COMP(params) {
+    if (dashboard.value == 'Dados Gerais') {
+      fetch("/dashboard/kp4comp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          idEmpresaServer: sessionStorage.idEmpresa
+        })
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            var js_comparacao = resposta[0].seteAtual - resposta[0].seteAnterior;
+            var js_comparacao = Number(js_comparacao);
+
+            if (js_comparacao > 0) {
+              compKpi4.style.color = 'red';
+              compKpi4.innerHTML = `▲${js_comparacao} a mais que nos 7 dias anteriores`;
+            }
+            else if (js_comparacao < 0) {
+              js_comparacao *= -1;
+              compKpi4.style.color = 'green';
+              compKpi4.innerHTML = `▼${js_comparacao} a menos que nos 7 dias anteriores`;
+            }
+            else {
+              compKpi4.style.color = 'goldenrod';
+              compKpi4.innerHTML = `Número igual ao dos 7 dias anteriores`;
+            }
+          });
+        }
+        else {
+          console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+          response.text().then(texto => {
+            console.error(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      });
+    }
+  }
+  KPI4COMP();
+  setInterval(() => { KPI4COMP() }, js_tempoAtualizacao);
+
+  function obterDadosGrafico() {
+    if (dashboard.value == 'Dados Gerais') {
+      fetch("/dashboard/grafico1", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          idEmpresaServer: sessionStorage.idEmpresa
+        })
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            if (js_graficoBarras1) {
+              js_graficoBarras1.destroy(); //Caso o gráfico já exista, destrua-o
+            }
+            plotarGrafico(resposta);
+          });
+        }
+        else {
+          console.log("Houve um erro ao tentar exibir dados nos gráficos!");
+
+          response.text().then(texto => {
+            console.error(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      });
+    }
+  }
+
+  obterDadosGrafico()
+  setInterval(() => { obterDadosGrafico() }, js_tempoAtualizacao);
+
+  function plotarGrafico(resposta) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = [];
+
+    // Criando estrutura para plotar gráfico - dados
+    let dados = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Número de Alertas',
+          data: [],
+          borderWidth: 1
+        }]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      labels.push(registro.nome);
+      dados.datasets[0].data.push(registro.numAlerta);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+      type: 'bar',
+      data: dados,
+      options: {
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Veículos'
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Número de Alertas'
+            },
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Os 4 Veículos que Mais Emitiram Alertas (Últimos 7 Dias)'
+          }
+        }
+      }
+    };
+
+    // Adicionando gráfico criado em div na tela
+    js_graficoBarras1 = new Chart(
+      document.getElementById(`barras1`),
+      config
+    );
+
+  }
+
+
+  obterDadosGrafico2()
+  function obterDadosGrafico2() {
+    if (dashboard.value == 'Dados Gerais') {
+      fetch("/dashboard/grafico2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          idEmpresaServer: sessionStorage.idEmpresa
+        })
+      }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            if (js_graficoBarras2) {
+              js_graficoBarras2.destroy(); //Caso o gráfico já exista, destrua-o
+            } 
+            plotarGrafico2(resposta);
+          });
+        }
+        else {
+          console.log("Houve um erro ao tentar exibir dados nos gráficos!");
+
+          response.text().then(texto => {
+            console.error(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      });
+    }
+  }
+
+  obterDadosGrafico2()
+  setInterval(() => { obterDadosGrafico2() }, js_tempoAtualizacao);
+
+  function plotarGrafico2(resposta) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = [];
+    var meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+    // Criando estrutura para plotar gráfico - dados
+    let dados = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Número de alertas',
+          data: [],
+          borderWidth: 1
+        }]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico2":')
+    console.log(resposta)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      labels.push(meses[registro.mes - 1]);
+      dados.datasets[0].data.push(registro.numAlerta);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+      type: 'bar',
+      data: dados,
+      options: {
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Meses'
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Número de Alertas'
+            },
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Número de Alertas por Mês (Últimos 6 Meses)'
+          }
+        }
+      }
+    };
+
+    // Adicionando gráfico criado em div na tela
+    js_graficoBarras2 = new Chart(
+      document.getElementById(`barras2`),
+      config
+    );
+  }
+
+
+  var js_atualizacaoDashEsp1;
+  var js_atualizacaoDashEsp2;
+  var js_graficoEsp1;
+  var js_graficoEsp2;
+
+  function dashEspecifica() {
+    var js_dashboard = dashboard.value;
+    if (js_dashboard == 'Dados Gerais') {
+      window.location = 'dashboard.html';
+    } else {
+      cards.innerHTML = `  <span class="card">
+      <b class="dado_card" id="kpi1"></b>
+      <p>Última Temperatura Captada</p>
+      <i class="kpi" style="color: blue" onclick="popEsp1('${js_dashboard}')">🔍︎Veja as Últimas Medições</i>
+    </span>
+    <div id="pop_up1" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+      <div id="conteudo_pop1">
+      </div>
+    </div>
+
+    <span class="card">
+      <b class="dado_card" id="kpi2"></b>
+      <p>Alerta(s) de Temperatura (último mês)</p>
+      <i class="kpi" style="color: blue" onclick="popEsp2('${js_dashboard}')">🔍︎Veja Mais</i>
+    </span>
+    <div id="pop_up2" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+      <div id="conteudo_pop2">
+      </div>
+
+    </div>
+
+    <span class="card">
+      <b class="dado_card" id="kpi3"></b>
+      <p>Alerta(s) de Temperatura Acima do Padrão (Últimos 6 Meses)</p>
+      <i class="kpi" id="compKpi3" style="color: blue;" onclick="popEsp3('${js_dashboard}')">🔍︎Veja Mais</i>
+    </span>
+    <div id="pop_up3" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+      <div id="conteudo_pop3">
+      </div>
+    </div>
+
+    <span class="card">
+      <b class="dado_card" id="kpi4"></b>
+      <p>Alerta(s) de Temperatura Abaixo do Padrão (Últimos 6 Meses)</p>
+      <i class="kpi" id="compKpi4" style="color: blue" onclick="popEsp4('${js_dashboard}')">🔍︎Veja Mais</i>
+    </span>
+    <div id="pop_up4" class="pop_up"><button onclick="fechar()" class="but_fechar">X</button>
+      <div id="conteudo_pop4">
+      </div>
+    </div>`;
+
+      graficos.innerHTML = `<div id="metricas">
+      <span class="metrica">
+        <p>Métricas de Alerta:</p>
+      </span>
+      <span class="metrica">
+        <p>Temperatura máxima: <b>8°C</b></p>
+      </span>
+      <span class="metrica">
+        <p>Temperatura mínima: <b>2°C</b></p>
+      </span>
+    </div>
+    <span class="grafico" id="linha"> <canvas id="grafico1"></canvas> </span>
+    <span class="grafico" id="pizza"> <canvas id="grafico2"></canvas> </span>`;
+
+      kpisEspecificas(js_dashboard);
+      clearInterval(js_atualizacaoDashEsp1);
+      js_atualizacaoDashEsp1 = setInterval(() => { kpisEspecificas(js_dashboard); }, js_tempoAtualizacao);
+      obterDadosGraficoEsp1(js_dashboard);
+      clearInterval(js_atualizacaoDashEsp2);
+      js_atualizacaoDashEsp2 = setInterval(() => { obterDadosGraficoEsp1(js_dashboard); }, js_tempoAtualizacao);
+    }
+
+  }
+
+  function kpisEspecificas(veiculo) {
+    fetch("/dashboard/kpsEsp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa,
+        veiculoServer: veiculo
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          kpi1.innerHTML = `${resposta[0].temperatura}°C`;
+          kpi2.innerHTML = resposta[0].numAlertas;
+          kpi3.innerHTML = resposta[0].numTempAlta;
+          kpi4.innerHTML = resposta[0].numTempBaixa;
+
+          if (js_graficoEsp2) {
+            js_graficoEsp2.destroy();
+          }
+          js_graficoEsp2 = new Chart(
+            document.getElementById(`grafico2`),
+            {
+              type: 'pie',
+              data: {
+                datasets: [{
+                  data: [Number(kpi4.innerHTML), Number(kpi3.innerHTML)]
+                }],
+                labels: ['Alerta(s) de Temperatura Abaixo do Padrão', 'Alerta(s) de Temperatura Acima do Padrão']
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'top',
+                  },
+                  title: {
+                    display: true,
+                    text: 'Tipos de Alerta de Temperatura'
+                  }
+                }
+              }
+            }
+          );
+
+        });
+      }
+      else {
+
+        console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+        response.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+  function popEsp1(veiculo) {
+    pop_up1.style.display = 'flex';
+
+    fetch("/dashboard/popEsp1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa,
+        veiculoServer: veiculo
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          conteudo_pop1.innerHTML = '';
+          for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            conteudo_pop1.innerHTML += `<div class="ocorrencia"><div><b>${registro.nome}</b></div><span> DataHora: ${registro.dataMedicao} Temperatura: ${registro.temperatura}</span>°C</div>`;
+          }
+        });
+      }
+      else {
+
+        console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+        response.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+  function popEsp2(veiculo) {
+    pop_up2.style.display = 'flex';
+
+    fetch("/dashboard/popEsp2", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa,
+        veiculoServer: veiculo
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          conteudo_pop2.innerHTML = '';
+          for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            conteudo_pop2.innerHTML += `<div class="ocorrencia"><div><b>${registro.nome}</b></div><span> DataHora: ${registro.dataAlerta} Temperatura: ${registro.temperatura}</span>°C</div>`;
+          }
+        });
+      }
+      else {
+
+        console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+        response.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+  function popEsp3(veiculo) {
+    pop_up3.style.display = 'flex';
+
+    fetch("/dashboard/popEsp3", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa,
+        veiculoServer: veiculo
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          conteudo_pop3.innerHTML = '';
+          for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            conteudo_pop3.innerHTML += `<div class="ocorrencia"><div><b>${registro.nome}</b></div><span> DataHora: ${registro.dataAlerta} Temperatura: ${registro.temperatura}</span>°C</div>`;
+          }
+        });
+      }
+      else {
+
+        console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+        response.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+  function popEsp4(veiculo) {
+    pop_up4.style.display = 'flex';
+
+    fetch("/dashboard/popEsp4", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa,
+        veiculoServer: veiculo
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          conteudo_pop4.innerHTML = '';
+          for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            conteudo_pop4.innerHTML += `<div class="ocorrencia"><div><b>${registro.nome}</b></div><span> DataHora: ${registro.dataAlerta} Temperatura: ${registro.temperatura}</span>°C</div>`;
+          }
+        });
+      }
+      else {
+
+        console.log("Houve um erro ao tentar exibir dados nas KPIs!");
+
+        response.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+  function obterDadosGraficoEsp1(veiculo) {
+
+    fetch("/dashboard/graficoEsp1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idEmpresaServer: sessionStorage.idEmpresa,
+        veiculoServer: veiculo
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          if (js_graficoEsp1) {
+            js_graficoEsp1.destroy();
+          }
+          plotarGraficoEsp1(resposta);
+        });
+      }
+      else {
+        console.log("Houve um erro ao tentar exibir dados nos gráficos!");
+
+        response.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    });
+  }
+
+  function plotarGraficoEsp1(resposta) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = [];
+
+    // Criando estrutura para plotar gráfico - dados
+    let dados = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Temperatura (°C)',
+          data: [],
+          borderWidth: 1
+        }]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico (ordem inversa)
+    for (i = resposta.length - 1; i >= 0; i--) {
+      var registro = resposta[i];
+      labels.push(registro.dataMedicao);
+      dados.datasets[0].data.push(registro.temperatura);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+      type: 'line',
+      data: dados,
+      options: {
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Data e Hora'
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Temperatura (°C)'
+            },
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Útimas Medições de Temperatura'
+          }
+        }
+      }
+    };
+
+    // Adicionando gráfico criado em div na tela
+    js_graficoEsp1 = new Chart(
+      document.getElementById(`grafico1`),
+      config
+    );
+
+  }
+
+</script>
 
 </html>

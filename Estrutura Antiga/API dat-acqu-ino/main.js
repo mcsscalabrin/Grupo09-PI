@@ -20,8 +20,8 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'arduino',
-            password: '@rduino123',
+            user: 'aluno',
+            password: 'sptech',
             database: 'SensiVacc',
             port: 3306 // mudar a porta para 3307 para inserir os dados na VM
         }
