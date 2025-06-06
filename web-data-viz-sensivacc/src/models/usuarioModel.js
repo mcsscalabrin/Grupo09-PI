@@ -12,13 +12,11 @@ function autenticar(email, senha) {
 function cadastrar(nome, email, senha, fkEmpresa) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha, fkEmpresa);
 
-    // Cargo padrão e nível de acesso para novos usuários
     var cargo = "usuário";
-    var nivelAcesso = 1;
 
     var instrucaoSql = `
-        INSERT INTO usuario (empresa, nomeUsuario, cargo, email, senha, nivelAcesso)
-        VALUES ('${fkEmpresa}', '${nome}', '${cargo}', '${email}', '${senha}', ${nivelAcesso});
+        INSERT INTO usuario (empresa, nomeUsuario, cargo, email, senha)
+        VALUES ('${fkEmpresa}', '${nome}', '${cargo}', '${email}', '${senha}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
