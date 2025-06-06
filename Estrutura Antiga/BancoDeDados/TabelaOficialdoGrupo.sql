@@ -22,9 +22,6 @@ nomeUsuario varchar(45) NOT NULL,
 cargo varchar(45) NOT NULL,
 email varchar(45) NOT NULL,
 senha varchar(45) NOT NULL,
-nivelAcesso tinyint(1) NOT NULL,
-constraint chkNivelAcesso 
-	check (nivelAcesso in (1, 2, 3)),
 constraint fkUsuarioEmpresa
 	foreign key (empresa) references empresa(idEmpresa)
 );
@@ -81,12 +78,12 @@ insert into empresa  values
 (default, 'StartUpX', '11223344000122', '90020340', '300', 'Sala 22', '5ABCDE');
 
 insert into usuario values
-(default, 1, 'Carlos Silva', 'gerente', 'carlos@techvac.com', 'pass321', 3),
-(default, 1, 'Marcos Almeida', 'analista sênior', 'marcos@techvac.com', 'marco123', 2),
-(default, 2, 'Mariana Souza', 'técnico de temperatura', 'mariana@inovafarma.com', 'inova457', 3),
-(default, 3,'Roberto Lima', 'farmacêutico chefe', 'roberto@ecomed.com', 'eco780', 3),
-(default, 4, 'Fernanda Costa','pesquisador geral', 'fernanda@megacorp.com', 'mega102', 3),
-(default, 5, 'Lucas Almeida', 'analista sênior', 'lucas@startupx.com', 'start2025', 3);
+(default, 1, 'Carlos Silva', 'gerente', 'carlos@techvac.com', 'pass321'),
+(default, 1, 'Marcos Almeida', 'analista sênior', 'marcos@techvac.com', 'marco123'),
+(default, 2, 'Mariana Souza', 'técnico de temperatura', 'mariana@inovafarma.com', 'inova457'),
+(default, 3,'Roberto Lima', 'farmacêutico chefe', 'roberto@ecomed.com', 'eco780'),
+(default, 4, 'Fernanda Costa','pesquisador geral', 'fernanda@megacorp.com', 'mega102'),
+(default, 5, 'Lucas Almeida', 'analista sênior', 'lucas@startupx.com', 'start2025');
 
 insert into transporte values 
 (default, 1, 'caminhão1', 'caminhão', 'QJT2032', 1),
@@ -141,6 +138,7 @@ case
 from sensor as s join registro as r
 	on s.idSensor = r.sensor
     where s.idSensor = 1;
+    
     
     
     
