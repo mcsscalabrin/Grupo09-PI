@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Segoe UI", Arial, sans-serif;
 }
 
 html {
@@ -11,201 +11,223 @@ html {
 }
 
 body {
-  background-color: #f5f5f5;
+  background: linear-gradient(120deg, #f5faff 0%, #e3f0ff 100%);
   color: #222;
   font-size: 1rem;
+  min-height: 100vh;
 }
 
-/* Navbar fixa */
+/* Navbar */
 .navbar {
-  background-color: #0073d8;
-  padding: 20px 40px;
+  background: linear-gradient(90deg, #0073d8, #2196f3);
+  padding: 18px 6vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
 }
 
-.navbar .logo {
-  font-size: 24px;
+.logo {
+  font-size: 28px;
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  text-shadow: 1px 2px 8px rgba(0,0,0,0.1);
+  letter-spacing: 1px;
 }
 
-.navbar .logo span {
+.logo span {
   font-weight: normal;
+  color: #e3f0ff;
 }
 
 .navbar nav a {
-  margin-left: 20px;
+  margin-left: 28px;
   text-decoration: none;
   color: #fff;
   font-weight: 600;
-  font-size: 17px;
-  transition: color 0.3s ease;
+  font-size: 18px;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
 }
 
-.navbar nav a:hover {
-  color: #333;
+.navbar nav a:hover,
+.navbar nav a:focus {
+  color: #ffe082;
+  border-bottom-color: #ffe082;
+  outline: none;
 }
 
 /* Container principal */
 .container-home {
-  padding: 130px 80px 80px;
+  padding: 140px 6vw 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* Mensagem de boas-vindas */
+/* Mensagens */
 .mensagens-home {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   margin-bottom: 60px;
+  animation: fadeIn 1s;
 }
 
 .mensagem-home h1 {
-  font-size: 56px;
+  font-size: 3.2rem;
   color: #0073d8;
-  margin-bottom: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(33,150,243,0.08);
 }
 
 .mensagem-home p {
-  font-size: 22px;
-  margin-bottom: 15px;
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: #333;
 }
 
-/* Seção Valores */
+/* Valores */
 .valores {
-  padding: 80px 40px;
-  text-align: center;
+  padding: 80px 4vw;
   background: linear-gradient(to right, #0073d8, #2196f3);
-  color: white;
+  color: #fff;
+  border-radius: 32px;
+  max-width: 1300px;
+  margin: 56px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .valores h1 {
-  font-size: 37px;
+  font-size: 2.3rem;
+  font-weight: 700;
   margin-bottom: 40px;
 }
 
 .caixas {
   display: flex;
-  gap: 60px;
   flex-wrap: wrap;
+  gap: 32px;
   justify-content: center;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .valores-caixa {
-  background-color: white;
+  background: linear-gradient(120deg, #fff, #e3f0ff);
   color: #0073d8;
-  padding: 40px;
-  border-radius: 15px;
-  width: 300px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  padding: 36px 28px;
+  border-radius: 18px;
+  width: 290px;
+  box-shadow: 0 8px 32px rgba(0, 115, 216, 0.1);
+  transition: 0.25s;
+  border: 1.5px solid #e3f0ff;
+  cursor: pointer;
 }
 
 .valores-caixa:hover {
-  transform: scale(1.05);
+  transform: scale(1.045) translateY(-6px);
+  box-shadow: 0 16px 40px rgba(33,150,243,0.18);
+  background: linear-gradient(120deg, #e3f0ff 60%, #fff);
 }
 
 .valores-caixa h3 {
-  font-size: 24px;
+  font-size: 1.35rem;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .valores-caixa p {
-  font-size: 19px;
-  line-height: 1.5;
+  font-size: 1.08rem;
+  line-height: 1.6;
 }
 
 /* Sobre a empresa */
-/* Layout em colunas para "Sobre a empresa" */
+.container-sobre-empresa {
+  padding: 64px 4vw;
+  background: #0073d8;
+  border-radius: 56px;
+  max-width: 1300px;
+  margin: 56px auto;
+}
+
+.container-sobre-empresa h1 {
+  color: #f5faff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
 .sobre-conteudo {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 32px;
 }
 
 .sobre-coluna {
   flex: 1;
-  min-width: 300px;
-  color: #fff;
-  padding: 10px;
-}
-
-/* Visual refinado para a seção */
-.container-sobre-empresa {
-  padding: 80px 60px;
-  background: linear-gradient(135deg, #0073d8 0%, #005bb5 100%);
-}
-
-.container-sobre-empresa h1 {
-    color: #ffffff;
-    padding:20px;
-    font-size: 40px;
-    margin: 8px;
+  min-width: 320px;
+  max-width: 600px;
 }
 
 .sobre-coluna h2 {
-  font-size: 35px;
-  margin-bottom: 15px;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
   color: #fff;
+  font-weight: 600;
 }
 
 .sobre-coluna p {
-  font-size: 22px;
-  line-height: 1.8;
-  text-align: justify;
+  font-size: 1.18rem;
+  line-height: 1.7;
+  color: #f5faff;
 }
 
-/* Sombra suave para seções */
-section {
-  transition: all 0.3s ease-in-out;
-}
-
-section:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-
-/* Seção do time */
+/* Equipe */
 .equipe {
-  padding: 80px 40px;
-  background-color: #fff;
+  padding: 80px 4vw;
+  background: linear-gradient(120deg, #fff, #e3f0ff);
   text-align: center;
+  border-radius: 32px 32px 0 0;
 }
 
 .equipe h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #0073d8;
+  font-weight: 800;
   margin-bottom: 60px;
 }
 
 .caixas-time {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 40px;
+  justify-content: center;
 }
 
 .caixa-integrante {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(120deg, #fff, #e3f0ff);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
   width: 220px;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease;
+  padding: 24px 16px;
+  transition: 0.25s;
+  border: 1.5px solid #e3f0ff;
+  cursor: pointer;
 }
 
 .caixa-integrante:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px) scale(1.035);
+  box-shadow: 0 16px 40px rgba(33,150,243,0.15);
+  background: linear-gradient(120deg, #e3f0ff 60%, #fff);
 }
 
 .foto-integrante {
@@ -213,31 +235,38 @@ section:hover {
   height: 200px;
   margin-bottom: 15px;
   overflow: hidden;
-  border-radius: 8px;
-  background-color: #e0e0e0;
+  border-radius: 10px;
+  background: #e0e0e0;
 }
 
 .foto-integrante img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.caixa-integrante:hover img {
+  transform: scale(1.07);
 }
 
 .caixa-integrante h3 {
-  font-size: 1.2rem;
-  color: #333;
+  font-size: 1.18rem;
+  color: #0073d8;
+  font-weight: 700;
 }
 
 /* Rodapé */
 .rodape {
   text-align: center;
-  padding: 20px;
-  background-color: #1a1a1a;
+  padding: 28px 10px 18px;
+  background: #1a1a1a;
   color: #fff;
-  font-size: 14px;
+  font-size: 15px;
+  border-radius: 0 0 18px 18px;
 }
 
-/* Animações */
+/* Animação */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -249,5 +278,34 @@ section:hover {
   }
 }
 
+/* Responsividade */
+@media (max-width: 900px) {
+  .container-home,
+  .container-sobre-empresa,
+  .valores,
+  .equipe {
+    padding: 110px 4vw 40px;
+  }
 
+  .caixas,
+  .caixas-time,
+  .sobre-conteudo {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
+  .valores-caixa,
+  .caixa-integrante,
+  .sobre-coluna {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .container-home,
+  .container-sobre-empresa,
+  .valores,
+  .equipe {
+    padding: 100px 2vw 40px;
+  }
+}
