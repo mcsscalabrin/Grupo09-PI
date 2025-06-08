@@ -62,9 +62,18 @@ async function gerarResposta(mensagem) {
         // gerando conteúdo com base na pergunta
         const modeloIA = chatIA.models.generateContent({
             model: "gemini-2.0-flash",
-            contents: `Em um paragráfo responda: ${mensagem}`
+            contents: `Você é um assistente de suporte de TI.
+            Responda SOMENTE se a pergunta for sobre:
+            - Requisição de incidentes
+            - Problemas técnicos
+            - Solução de erros de sistema
+            - Solicitações de suporte de TI
+            Se NÃO for sobre TI, responda APENAS com "Fora do escopo".
+            Resposta obrigatoriamente em UM parágrafo curto e direto.
 
+            Pergunta: ${mensagem}`
         });
+
         const resposta = (await modeloIA).text;
         const tokens = (await modeloIA).usageMetadata;
 

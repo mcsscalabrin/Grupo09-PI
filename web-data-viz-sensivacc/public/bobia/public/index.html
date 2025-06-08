@@ -1,42 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BobIA</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-    <div id="container">
-        <h1>BobIA</h1>
-        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-        <br><br>
-        <button onclick="gerarResposta()">Gerar Resposta</button>
-        <h3>Resposta da IA:</h3>
-        <div id="resposta"></div>
-    </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BobIA - SensiVacc</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+    </head>
 
-    <script>
-        
-        async function gerarResposta() {
-            const pergunta = document.getElementById('pergunta').value;
+    <body>
+        <header class="navbar">
+            <div class="logo">Sensi<span>Vacc</span></div>
+            <nav>
+                <a href="#">Início</a>
+                <a href="#">Sobre</a>
+                <a href="#">Sair</a>
+            </nav>
+        </header>
 
-            const response = await fetch('/perguntar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ pergunta })
-            });
+        <div class="container">
+            <div class="titulo">
+                <h2>Bem-vindo ao <span style="color: #0075cd;">BobIA</span><br>Seu assistente inteligente</h2>
+            </div>
 
-            const data = await response.json();
+            <div class="card">
+                <div class="card-content">
+                    <h2 class="card-title">BobIA</h2>
+                    <div class="input-group">
+                        <label for="pergunta">Digite sua pergunta:</label>
+                        <textarea id="pergunta" class="input" placeholder="O que você gostaria de saber?"></textarea>
+                    </div>
+                    <button class="btn-acessar" onclick="gerarResposta()">Gerar Resposta</button>
 
-            resposta.style.display = 'block';
-            document.getElementById('resposta').innerText = data.resultado;
-        }
+                    <div class="resposta-container">
+                        <h3>Resposta da IA:</h3>
+                        <div id="resposta"></div>
+                    </div>
 
-    </script>
-    
-</body>
+                    <div class="loading-div">
+                        <img src="../assets/imgs/circle-loading.gif" alt="Carregando...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const loadingDiv = document.querySelector('.loading-div');
+
+            async function gerarResposta() {
+                const pergunta = document.getElementById('pergunta').value;
+
+                if (!pergunta.trim()) {
+                    alert('Por favor, digite uma pergunta.');
+                    return;
+                }
+
+                loadingDiv.style.display = 'block';
+                document.getElementById('resposta').innerText = '';
+
+                try {
+                    const response = await fetch('/perguntar', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ pergunta })
+                    });
+
+                    const data = await response.json();
+
+                    document.getElementById('resposta').style.display = 'block';
+                    document.getElementById('resposta').innerText = data.resultado;
+                } catch (error) {
+                    document.getElementById('resposta').innerText = 'Erro ao processar sua pergunta. Tente novamente.';
+                } finally {
+                    loadingDiv.style.display = 'none';
+                }
+            }
+        </script>
+    </body>
+
 </html>

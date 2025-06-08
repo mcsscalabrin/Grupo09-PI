@@ -165,13 +165,13 @@ body {
 }
 
 /* Sombra suave para seções */
-section {
+/* section {
   transition: all 0.3s ease-in-out;
 }
 
 section:hover {
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
+} */
 
 
 /* Seção do time */
