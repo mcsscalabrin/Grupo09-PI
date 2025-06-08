@@ -64,6 +64,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 25vw;
 }
 
 .card-content-cadastro {
@@ -129,7 +130,7 @@ body {
 }
 
 .btn-acessar-cadastro {
-    width: 100%;
+    width: 70%;
     background-color: #ffffff;
     color: #0075cd;
     border: none;
@@ -142,7 +143,7 @@ body {
 }
 
 .btn-acessar {
-    width: 100%;
+    width: 70%;
     background-color: #ffffff;
     color: #0075cd;
     border: none;
