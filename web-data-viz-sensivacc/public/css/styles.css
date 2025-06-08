@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+  font-family: "Inter", "Roboto", "Segoe UI", Arial, sans-serif;
 }
 
 html {
@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background: linear-gradient(120deg, #f5faff 0%, #e3f0ff 100%);
+  background: linear-gradient(120deg, #f5faff 0%, #90c1ec 100%);
   color: #222;
   font-size: 1rem;
   min-height: 100vh;
@@ -36,7 +36,7 @@ body {
 .logo {
   font-size: 28px;
   font-weight: bold;
-  text-shadow: 1px 2px 8px rgba(0,0,0,0.1);
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
   letter-spacing: 1px;
 }
 
@@ -62,12 +62,23 @@ body {
   outline: none;
 }
 
+.navbar nav a.active,
+.navbar nav a:focus {
+  color: #ffe082;
+  border-bottom-color: #ffe082;
+  outline: none;
+  background: rgba(255,255,255,0.07);
+  border-radius: 4px 4px 0 0;
+}
+
 /* Container principal */
 .container-home {
   padding: 140px 6vw 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  animation: fadeIn 1.2s;
+  margin-bottom: 48px;
 }
 
 /* Mensagens */
@@ -84,7 +95,7 @@ body {
   color: #0073d8;
   font-weight: 800;
   letter-spacing: 1px;
-  text-shadow: 0 2px 8px rgba(33,150,243,0.08);
+  text-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
 }
 
 .mensagem-home p {
@@ -100,10 +111,11 @@ body {
   color: #fff;
   border-radius: 32px;
   max-width: 1300px;
-  margin: 56px auto;
+  margin: 56px auto 48px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fadeIn 1.2s;
 }
 
 .valores h1 {
@@ -127,15 +139,15 @@ body {
   padding: 36px 28px;
   border-radius: 18px;
   width: 290px;
-  box-shadow: 0 8px 32px rgba(0, 115, 216, 0.1);
-  transition: 0.25s;
+  box-shadow: 0 4px 18px rgba(0, 115, 216, 0.07);
   border: 1.5px solid #e3f0ff;
   cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s, color 0.2s;
 }
 
 .valores-caixa:hover {
   transform: scale(1.045) translateY(-6px);
-  box-shadow: 0 16px 40px rgba(33,150,243,0.18);
+  box-shadow: 0 16px 40px rgba(33, 150, 243, 0.18);
   background: linear-gradient(120deg, #e3f0ff 60%, #fff);
 }
 
@@ -149,6 +161,75 @@ body {
   font-size: 1.08rem;
   line-height: 1.6;
 }
+/* Dashboard */
+.dashboard-chamada {
+  background: linear-gradient(100deg, #2196f3 60%, #0073d8 100%);
+  border-radius: 32px;
+  max-width: 900px;
+  margin: 56px auto 48px auto;
+  box-shadow: 0 8px 32px rgba(33, 150, 243, 0.13);
+  padding: 56px 6vw 48px 6vw;
+  text-align: center;
+  animation: fadeIn 1.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-chamada::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, #fff 0%, #2196f3 70%, transparent 100%);
+  opacity: 0.12;
+  z-index: 0;
+}
+
+.dashboard-conteudo {
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-chamada h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 22px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.10);
+}
+
+.dashboard-chamada p {
+  color: #e3f0ff;
+  font-size: 1.22rem;
+  margin-bottom: 38px;
+  font-weight: 500;
+}
+
+.btn-dashboard {
+  display: inline-block;
+  background: linear-gradient(90deg, #90c1ec 10%, #fffde4 100%);
+  color: #0073d8;
+  font-weight: 800;
+  font-size: 1.25rem;
+  padding: 18px 48px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(255, 224, 130, 0.18);
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+  letter-spacing: 0.5px;
+  border: none;
+  outline: none;
+}
+
+.btn-dashboard:hover, .btn-dashboard:focus {
+  transform: scale(1.045) translateY(-4px);
+  background: linear-gradient(90deg, #90c1ec 10%, #fffde4 100%);
+  box-shadow: 0 8px 32px rgba(255, 224, 130, 0.28);
+  color: #0073d8;
+}
 
 /* Sobre a empresa */
 .container-sobre-empresa {
@@ -156,7 +237,8 @@ body {
   background: #0073d8;
   border-radius: 56px;
   max-width: 1300px;
-  margin: 56px auto;
+  margin: 56px auto 48px auto;
+  animation: fadeIn 1.2s;
 }
 
 .container-sobre-empresa h1 {
@@ -188,15 +270,70 @@ body {
 .sobre-coluna p {
   font-size: 1.18rem;
   line-height: 1.7;
+  color: #e3f0ff;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+/* Suporte */
+.suporte {
+  background: #0073d8;       
+  color: #f5faff;              
+  border-radius: 16px;
+  padding: 32px 24px;
+  margin: 16vh auto 48px auto;
+  max-width: 700px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  animation: fadeIn 1.2s;
+}
+
+.suporte h1 {
   color: #f5faff;
+  margin-bottom: 18px;
+}
+
+.suporte-conteudo p {
+  font-size: 1.1rem;
+  color: #e3f0ff;
+  margin-bottom: 16px;
+}
+
+.btn-suporte {
+  
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #fff 80%, #f5faff 100%);
+  color: #0073d8;
+  padding: 12px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.08rem;
+  margin-left: 8px;
+  box-shadow: 0 2px 10px rgba(26, 111, 163, 0.10);
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s, color 0.2s;
+  margin-top: 2vh;
+}
+.btn-suporte::before {
+  content: "✉️";
+  font-size: 1.15em;
+}
+.btn-suporte:hover {
+  transform: scale(1.0045) translateY(4px);
+  color: #0073d8;
 }
 
 /* Equipe */
 .equipe {
   padding: 80px 4vw;
-  background: linear-gradient(120deg, #fff, #e3f0ff);
   text-align: center;
   border-radius: 32px 32px 0 0;
+  animation: fadeIn 1.2s;
+  margin-bottom: 48px;
 }
 
 .equipe h2 {
@@ -216,27 +353,31 @@ body {
 .caixa-integrante {
   background: linear-gradient(120deg, #fff, #e3f0ff);
   border-radius: 16px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 18px rgba(0, 115, 216, 0.07);
   width: 220px;
   padding: 24px 16px;
-  transition: 0.25s;
   border: 1.5px solid #e3f0ff;
   cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s, color 0.2s;
 }
 
 .caixa-integrante:hover {
   transform: translateY(-12px) scale(1.035);
-  box-shadow: 0 16px 40px rgba(33,150,243,0.15);
+  box-shadow: 0 16px 40px rgba(33, 150, 243, 0.15);
   background: linear-gradient(120deg, #e3f0ff 60%, #fff);
 }
 
 .foto-integrante {
-  width: 100%;
-  height: 200px;
-  margin-bottom: 15px;
+  border-radius: 50%;
   overflow: hidden;
-  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(33,150,243,0.10);
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 15px auto;
   background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .foto-integrante img {
@@ -261,9 +402,10 @@ body {
   text-align: center;
   padding: 28px 10px 18px;
   background: #1a1a1a;
-  color: #fff;
+  color: #e3f0ff;
   font-size: 15px;
-  border-radius: 0 0 18px 18px;
+  letter-spacing: 0.5px;
+  border-top: 2px solid #0073d8;
 }
 
 /* Animação */
@@ -278,6 +420,11 @@ body {
   }
 }
 
+/* Espaçamentos uniformes entre seções */
+section, .suporte, .equipe {
+  margin-bottom: 48px;
+}
+
 /* Responsividade */
 @media (max-width: 900px) {
   .container-home,
@@ -286,14 +433,12 @@ body {
   .equipe {
     padding: 110px 4vw 40px;
   }
-
   .caixas,
   .caixas-time,
   .sobre-conteudo {
     flex-direction: column;
     align-items: stretch;
   }
-
   .valores-caixa,
   .caixa-integrante,
   .sobre-coluna {
@@ -307,5 +452,19 @@ body {
   .valores,
   .equipe {
     padding: 100px 2vw 40px;
+  }
+  .mensagem-home h1,
+  .valores h1,
+  .container-sobre-empresa h1,
+  .equipe h2 {
+    font-size: 1.5rem;
+  }
+  .foto-integrante {
+    width: 80px;
+    height: 80px;
+  }
+  .btn-suporte {
+    font-size: 1rem;
+    padding: 10px 18px;
   }
 }
