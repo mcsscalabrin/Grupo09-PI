@@ -1,57 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>BobIA - SensiVacc</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobIA - SensiVacc</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
 
-    <body>
-        <header class="navbar">
-            <div class="logo">Sensi<span>Vacc</span></div>
-            <nav>
-                <a href="#">Início</a>
-                <a href="#">Sobre</a>
-                <a href="#">Sair</a>
-            </nav>
-        </header>
+<body>
+    <header class="navbar">
+        <div class="logo">Sensi<span>Vacc</span></div>
+        <nav>
+            <a href="http://localhost:3333" id="sair">Sair</a>
+        </nav>
+    </header>
 
-        <div class="container">
-            <div class="titulo">
-                <h2>Bem-vindo ao <span style="color: #0075cd;">BobIA</span><br>Seu assistente inteligente</h2>
-            </div>
+    <div class="container">
+        <div class="titulo">
+            <h2>Bem-vindo ao <span style="color: #0075cd;">BobIA</span><br>Seu assistente inteligente</h2>
+        </div>
 
-            <div class="card">
-                <div class="card-content">
-                    <h2 class="card-title">BobIA</h2>
-                    <div class="input-group">
-                        <label for="pergunta">Digite sua pergunta:</label>
-                        <textarea id="pergunta" class="input" placeholder="O que você gostaria de saber?"></textarea>
-                    </div>
-                    <button class="btn-acessar" onclick="gerarResposta()">Gerar Resposta</button>
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">BobIA</h2>
+                <div class="input-group">
+                    <label for="pergunta">Digite sua pergunta:</label>
+                    <textarea id="pergunta" class="input" placeholder="O que você gostaria de saber?"></textarea>
+                </div>
+                <button class="btn-acessar" onclick="gerarResposta()">Gerar Resposta</button>
 
-                    <div class="resposta-container">
-                        <h3>Resposta da IA:</h3>
-                        <div id="resposta"></div>
-                    </div>
+                <div class="resposta-container">
+                    <h3>Resposta da IA:</h3>
+                    <div id="resposta"></div>
+                </div>
 
-                    <div class="loading-div">
-                        <img src="../assets/imgs/circle-loading.gif" alt="Carregando...">
-                    </div>
+                <div class="loading-div">
+                    <img src="../assets/imgs/circle-loading.gif" alt="Carregando...">
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            const loadingDiv = document.querySelector('.loading-div');
+    <script>
+        function deslogar3() {
+            sessionStorage.EMAIL_USUARIO = '';
+            sessionStorage.NOME_USUARIO = '';
+            sessionStorage.ID_USUARIO = '';
+            sessionStorage.idEmpresa = '';
+            sessionStorage.AQUARIOS = '';
+        }
 
-            async function gerarResposta() {
+        sair.onclick = deslogar3;
+
+        const loadingDiv = document.querySelector('.loading-div');
+
+        async function gerarResposta() {
+            if (!sessionStorage.NOME_USUARIO) {
+                window.location = 'http://localhost:3333';
+                return;
+            }
+            else {
                 const pergunta = document.getElementById('pergunta').value;
 
                 if (!pergunta.trim()) {
@@ -81,7 +94,9 @@
                     loadingDiv.style.display = 'none';
                 }
             }
-        </script>
-    </body>
+        }
+    </script>
+
+</body>
 
 </html>

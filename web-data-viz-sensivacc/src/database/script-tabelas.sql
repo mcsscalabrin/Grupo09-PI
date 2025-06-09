@@ -77,8 +77,8 @@ insert into empresa  values
 (default, 'StartUpX', '11223344000122', '90020340', '300', 'Sala 22', '5ABCDE');
 
 insert into usuario values
-(default, 1, 'Matheus Scalabrin', 'suporte', 'matheus@techvac.com', 'sensi321'),
-(default, 1, 'Nathan Barbosa', 'suporte', 'nathan@techvac.com', 'sensi123'),
+(default, 1, 'Matheus Scalabrin', 'suporte', 'matheus@sensivacc.com', 'sensi321'),
+(default, 1, 'Nathan Barbosa', 'suporte', 'nathan@sensivacc.com', 'sensi123'),
 (default, 2, 'Mariana Souza', 'técnico de temperatura', 'mariana@inovafarma.com', 'inova457'),
 (default, 3,'Roberto Lima', 'farmacêutico chefe', 'roberto@ecomed.com', 'eco780'),
 (default, 4, 'Fernanda Costa','pesquisador geral', 'fernanda@megacorp.com', 'mega102'),
