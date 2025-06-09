@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SensiVacc - Login</title>
-        <link rel="stylesheet" href="./css/sensivacc-style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensiVacc - Login</title>
+    <link rel="stylesheet" href="./css/sensivacc-style.css">
+</head>
 
-    <body>
-        <div class="titulo" class="overflow-hidden">
-            <h2>
-                Faça seu login
-                <br>
-                E entre para o nosso time <a style="color: #0075cd;">SensiVacc.</a>
-            </h2>
+<body>
+    <div class="titulo" class="overflow-hidden">
+        <h2>
+            Faça seu login
+            <br>
+            E entre para o nosso time <a style="color: #0075cd;">SensiVacc.</a>
+        </h2>
+    </div>
+
+    <div class="alerta_erro">
+        <div class="card_erro" id="cardErro" style="display: none;">
+            <span id="mensagem_erro"></span>
         </div>
+    </div>
 
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro" style="display: none;">
-                <span id="mensagem_erro"></span>
+    <div class="card">
+        <div class="card-content">
+            <h2 class="login">LOGIN</h2>
+            <div class="input-group">
+                <label for="email_input">Email <span style="color: red;">*</span></label>
+                <input class="input" id="email_input" placeholder="Email">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="senha_input">Senha <span style="color: red;">*</span></label>
+                <input class="input" id="senha_input" type="password" placeholder="Senha">
+            </div>
+            <br>
+            <div class="cadastro">
+                <a href="javascript:recuperarSenha()" class="btn-cadastrar">Recuperar Senha</a>
+            </div>
+            <br>
+            <button onclick="entrar()" class="btn-acessar">Acessar</button>
+            <div class="cadastro">
+                <span>Novo na SensiVacc?</span>
+                <a href="cadastro.html" class="btn-cadastrar">Cadastrar</a>
+            </div>
+
+            <div id="div_aguardar" class="loading-div" style="display: none;">
+                <img src="./assets/circle-loading.gif" id="loading-gif">
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-content">
-                <h2 class="login">LOGIN</h2>
-                <div class="input-group">
-                    <label for="email_input">Email <span style="color: red;">*</span></label>
-                    <input class="input" id="email_input" placeholder="Email">
-                </div>
-                <br>
-                <div class="input-group">
-                    <label for="senha_input">Senha <span style="color: red;">*</span></label>
-                    <input class="input" id="senha_input" type="password" placeholder="Senha">
-                </div>
-                <br>
-                <div class="cadastro">
-                    <a href="javascript:recuperarSenha()" class="btn-cadastrar">Recuperar Senha</a>
-                </div>
-                <br>
-                <button onclick="entrar()" class="btn-acessar">Acessar</button>
-                <div class="cadastro">
-                    <span>Novo na SensiVacc?</span>
-                    <a href="cadastro.html" class="btn-cadastrar">Cadastrar</a>
-                </div>
-
-                <div id="div_aguardar" class="loading-div" style="display: none;">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
-            </div>
-        </div>
-    </body>
+    </div>
+</body>
 
 </html>
 <script>
@@ -112,12 +112,16 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.idEmpresa = json.empresaId;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/dashboard.html";
-                    }, 1000);
-
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios);
+                    if (sessionStorage.idEmpresa == 1) {
+                        setTimeout(function () {
+                            window.location = "http://localhost:3001";
+                        }, 1000);
+                    } else {
+                        setTimeout(function () {
+                            window.location = "./dashboard/dashboard.html";
+                        }, 1000);
+                    }
                 });
 
             } else {

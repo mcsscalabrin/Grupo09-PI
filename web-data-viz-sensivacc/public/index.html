@@ -18,8 +18,8 @@
         <nav>
             <a href="#inicio" class="headerInicio">Início</a>
             <a href="#sobre-nos">Sobre Nós</a>
-            <a href="login.html">Entrar</a>
-            <a href="#suporte">Nosso suporte</a>
+            <a href="#suporte">Suporte</a>
+            <a href="login.html" id="statusLogin">Entrar</a>
         </nav>
     </header>
 
@@ -68,7 +68,7 @@
                 Acompanhe agora mesmo os dados de temperatura e o status do transporte das vacinas em tempo real.<br>
                 Tenha controle total, segurança e transparência na palma da sua mão.
             </p>
-            <a href="../public/dashboard/dashboard.html" class="btn-dashboard">Acessar Dashboard</a>
+            <a id="but_dashboard" href="login.html" class="btn-dashboard">Acessar Dashboard</a>
         </div>
     </section>
     <section class="container-sobre-empresa" id="sobre-nos">
@@ -97,18 +97,19 @@
     </section>
     <section id="suporte">
         <div class="suporte">
-            <h1>Nosso suporte</h1>
+            <h1>Nosso Suporte</h1>
             <div class="suporte-conteudo">
                 <p>
-                Estamos sempre prontos para ajudar! Se você tiver alguma dúvida ou precisar de assistência, não
-                hesite em entrar em contato conosco. Nossa equipe de suporte está disponível para garantir que
-                você tenha a melhor experiência possível com nossos produtos e serviços.
+                    Estamos sempre prontos para ajudar! Se você tiver alguma dúvida ou precisar de assistência, não
+                    hesite em entrar em contato conosco. Nossa equipe de suporte está disponível para garantir que
+                    você tenha a melhor experiência possível com nossos produtos e serviços.
                 </p>
                 <p>
                     Você pode nos contatar através da plataforma jira <br>
-                    <a href="" class="btn-suporte">Acesso ao suporte</a> <!-- Falta colocar o link-->
+                    <a id="but_suporte" href="login.html" class="btn-suporte">Acesso
+                        ao suporte</a>
                 </p>
-         </div>
+            </div>
         </div>
     </section>
     <section class="equipe">
@@ -116,32 +117,32 @@
         <div class="caixas-time">
             <div class="caixa-integrante">
                 <div class="foto-integrante">
-                    <img src="../public/imagens/scalabrin.jpeg" alt="Matheus Scalabrin">
+                    <img src="imagens/scalabrin.jpeg" alt="Matheus Scalabrin">
                 </div>
                 <h3>Matheus Scalabrin</h3>
                 <p></p>
             </div>
             <div class="caixa-integrante">
                 <div class="foto-integrante">
-                    <img src="../public/imagens/wendel.jpeg" alt="Wendel Sousa">
+                    <img src="imagens/wendel.jpeg" alt="Wendel Sousa">
                 </div>
                 <h3>Wendel Sousa</h3>
             </div>
             <div class="caixa-integrante">
                 <div class="foto-integrante">
-                    <img src="../public/imagens/lorenzo.jpeg" alt=" Lorenzo Rodrigues">
+                    <img src="imagens/lorenzo.jpeg" alt=" Lorenzo Rodrigues">
                 </div>
                 <h3>Lorenzo Rodrigues</h3>
             </div>
             <div class="caixa-integrante">
                 <div class="foto-integrante">
-                    <img src="../public/imagens/gabriel.jpeg" alt="Gabriel Pereira">
+                    <img src="imagens/gabriel.jpeg" alt="Gabriel Pereira">
                 </div>
                 <h3>Gabriel Pereira</h3>
             </div>
             <div class="caixa-integrante">
                 <div class="foto-integrante">
-                    <img src="../public/imagens/nathan.jpeg" alt="Nathan Barbosa">
+                    <img src="imagens/nathan.jpeg" alt="Nathan Barbosa">
                 </div>
                 <h3>Nathan Barbosa</h3>
             </div>
@@ -150,5 +151,25 @@
     <footer class="rodape">
         <p>SensiVacc © 2025 Todos os direitos reservados.</p>
 </body>
+<script>
+    function deslogar() {
+        sessionStorage.EMAIL_USUARIO = '';
+        sessionStorage.NOME_USUARIO = '';
+        sessionStorage.ID_USUARIO = '';
+        sessionStorage.idEmpresa = '';
+        sessionStorage.AQUARIOS = '';
+        statusLogin.innerHTML = 'Entrar';
+        but_suporte.href = 'login.html';
+        but_dashboard.href = 'login.html';
+    }
+    if (sessionStorage.NOME_USUARIO) {
+        statusLogin.innerHTML = 'Sair';
+        statusLogin.onclick = deslogar;
+        but_suporte.href = 'https://sensivacc.atlassian.net/servicedesk/customer/portal/1';
+        but_dashboard.href = 'dashboard/dashboard.html';
+    } else {
+        statusLogin.innerHTML = 'Entrar';
+    }
+</script>
 
 </html>
